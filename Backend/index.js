@@ -1,4 +1,5 @@
 import express from 'express';
+import { connection } from './dataBase/connection.js';
 
 
 
@@ -7,6 +8,9 @@ import express from 'express';
 
 const app = express()
 const port = 3000
+connection();
+
+
 
 app.use(express.json());
 
