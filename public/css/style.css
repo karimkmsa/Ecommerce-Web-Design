@@ -237,6 +237,9 @@ a {
 /* Hero banner */
 .hero-banner {
   background-image: url('/assets/Image/backgrounds/Banner-board-800x420\ 2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1,180px;
   position: relative;
   display: flex;
   align-items: flex-end;
