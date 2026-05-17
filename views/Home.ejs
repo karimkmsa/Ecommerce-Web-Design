@@ -12,13 +12,16 @@
 <body>
 
 
-
- <header class="header">
+<header class="header">
     <div class="header-top">
       <a href="/" class="logo">
         <div class="logo-icon">
-       <img src="\assets\Layout\Brand\logo-colored.png" alt="brandLogo">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+            <path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
+        <span class="logo-text">Brand</span>
       </a>
  
       <div class="search-bar">
@@ -102,6 +105,7 @@
         </div>
         <div class="hero-image">
           <div class="hero-bg"></div>
+          <svg class="hero-headphones" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M30 130 Q30 50 110 50 Q190 50 190 130" stroke="#111" stroke-width="14" fill="none" stroke-linecap="round"/>
             <rect x="12" y="118" width="30" height="55" rx="15" fill="#111"/>
             <rect x="16" y="122" width="22" height="47" rx="12" fill="#2a2a2a"/>
@@ -233,7 +237,209 @@
       </div>
     </section>
  
-  </main>
+    <!-- ── SECTION 4: Send Quote Banner ── -->
+    <section class="quote-section">
+      <div class="quote-left">
+        <h2>An easy way to send requests<br>to all suppliers</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="quote-form-card">
+        <h3>Send quote to suppliers</h3>
+        <input type="text" class="quote-input" placeholder="What item you need?" />
+        <textarea class="quote-textarea" placeholder="Type more details"></textarea>
+        <div class="quote-row">
+          <input type="number" class="quote-input quote-qty" placeholder="Quantity" />
+          <select class="quote-unit">
+            <option>Pcs</option>
+            <option>Kg</option>
+            <option>Box</option>
+            <option>Set</option>
+          </select>
+        </div>
+        <button class="quote-btn">Send inquiry</button>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 5: Recommended Items ── -->
+    <section class="recommended-section">
+      <h2 class="section-title">Recommended items</h2>
+      <div class="recommended-grid">
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="10" y="26" width="36" height="18" rx="6" fill="#c8a97a"/><rect x="14" y="20" width="28" height="10" rx="5" fill="#d4b896"/><rect x="8" y="28" width="8" height="18" rx="4" fill="#b89060"/><rect x="40" y="28" width="8" height="18" rx="4" fill="#b89060"/><rect x="16" y="42" width="6" height="10" rx="3" fill="#8a6a40"/><rect x="34" y="42" width="6" height="10" rx="3" fill="#8a6a40"/></svg></div>
+          <p class="rec-price">$10.30</p><p class="rec-name">T-shirts with multiple colors, for men</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="36" rx="14" ry="8" fill="#8B4513"/><ellipse cx="28" cy="30" rx="10" ry="6" fill="#a0522d"/><rect x="20" y="40" width="4" height="8" rx="2" fill="#7a3b10"/><rect x="32" y="40" width="4" height="8" rx="2" fill="#7a3b10"/></svg></div>
+          <p class="rec-price">$10.30</p><p class="rec-name">Jeans shorts for men blue color</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="32" rx="16" ry="4" fill="#d0c8b8"/><rect x="26" y="14" width="4" height="20" rx="2" fill="#d0d0d0"/><ellipse cx="28" cy="14" rx="8" ry="4" fill="#e8e8e8"/></svg></div>
+          <p class="rec-price">$12.50</p><p class="rec-name">Brown winter coat medium size</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="14" y="6" width="28" height="44" rx="6" fill="#e8403a"/><rect x="16" y="10" width="24" height="34" rx="3" fill="#cc2020"/><circle cx="28" cy="48" r="2" fill="#ff6060"/></svg></div>
+          <p class="rec-price">$34.00</p><p class="rec-name">Jeans bag for travel for men</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="16" y="10" width="24" height="36" rx="6" fill="#d0d0d0"/><rect x="19" y="13" width="18" height="18" rx="3" fill="#888"/><circle cx="28" cy="40" r="3" fill="#aaa"/></svg></div>
+          <p class="rec-price">$99.00</p><p class="rec-name">Leather wallet</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><path d="M14 28 Q14 14 28 14 Q42 14 42 28" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="8" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/><rect x="40" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/><rect x="9" y="28" width="6" height="12" rx="3" fill="#1155cc"/><rect x="41" y="28" width="6" height="12" rx="3" fill="#1155cc"/></svg></div>
+          <p class="rec-price">$25.00</p><p class="rec-name">Headphones</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="8" y="10" width="40" height="30" rx="4" fill="#1e1e1e"/><rect x="10" y="12" width="36" height="26" rx="2" fill="#e0eaff"/><rect x="4" y="40" width="48" height="4" rx="2" fill="#333"/></svg></div>
+          <p class="rec-price">$49.00</p><p class="rec-name">Tablet</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="16" y="10" width="24" height="36" rx="6" fill="#c8c8c8"/><rect x="19" y="13" width="18" height="22" rx="3" fill="#888"/><circle cx="28" cy="40" r="3" fill="#aaa"/><rect x="24" y="17" width="10" height="2" rx="1" fill="#bbb"/></svg></div>
+          <p class="rec-price">$19.00</p><p class="rec-name">Smart watches</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><path d="M18 14 L20 42 L36 42 L38 14 Z" fill="#ddd"/><rect x="22" y="8" width="12" height="8" rx="3" fill="#ccc"/><ellipse cx="28" cy="42" rx="10" ry="3" fill="#bbb"/><path d="M22 28 L34 28" stroke="#aaa" stroke-width="2"/></svg></div>
+          <p class="rec-price">$39.00</p><p class="rec-name">Blenders</p>
+        </div>
+ 
+        <div class="rec-card">
+          <div class="rec-img"><svg viewBox="0 0 56 56" fill="none"><rect x="20" y="8" width="16" height="24" rx="4" fill="#e0e0e0"/><circle cx="28" cy="16" r="6" fill="#ccc"/><rect x="24" y="30" width="8" height="18" rx="2" fill="#d0d0d0"/><ellipse cx="28" cy="48" rx="10" ry="4" fill="#bbb"/></svg></div>
+          <p class="rec-price">$100.00</p><p class="rec-name">Kitchen mixer</p>
+        </div>
+ 
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 6: Extra Services + Suppliers by Region ── -->
+    <section class="services-section">
+      <h2 class="section-title">Our extra services</h2>
+      <div class="services-grid">
+ 
+        <div class="service-card">
+          <div class="service-img service-img-warehouse"></div>
+          <div class="service-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <p class="service-label">Source from Industry Hubs</p>
+        </div>
+ 
+        <div class="service-card">
+          <div class="service-img service-img-colors"></div>
+          <div class="service-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          </div>
+          <p class="service-label">Customize Your Products</p>
+        </div>
+ 
+        <div class="service-card">
+          <div class="service-img service-img-shipping"></div>
+          <div class="service-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <p class="service-label">Fast, reliable shipping by ocean or air</p>
+        </div>
+ 
+        <div class="service-card">
+          <div class="service-img service-img-inspection"></div>
+          <div class="service-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p class="service-label">Product monitoring and inspection</p>
+        </div>
+ 
+      </div>
+ 
+      <!-- Suppliers by region -->
+      <h2 class="section-title" style="margin-top: 40px;">Suppliers by region</h2>
+      <div class="region-grid">
+        <a href="#" class="region-item"><span class="region-flag">🇦🇪</span><div><p class="region-name">Arabic Emirates</p><p class="region-domain">shopname.ae</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇦🇺</span><div><p class="region-name">Australia</p><p class="region-domain">shopname.au</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇺🇸</span><div><p class="region-name">United States</p><p class="region-domain">shopname.us</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇷🇺</span><div><p class="region-name">Russia</p><p class="region-domain">shopname.ru</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇮🇹</span><div><p class="region-name">Italy</p><p class="region-domain">shopname.it</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇩🇰</span><div><p class="region-name">Denmark</p><p class="region-domain">shopname.dk</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇫🇷</span><div><p class="region-name">France</p><p class="region-domain">shopname.fr</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇨🇳</span><div><p class="region-name">China</p><p class="region-domain">shopname.ae</p></div></a>
+        <a href="#" class="region-item"><span class="region-flag">🇬🇧</span><div><p class="region-name">Great Britain</p><p class="region-domain">shopname.co.uk</p></div></a>
+      </div>
+ 
+    </section>
+ 
+  </main><!-- end .main -->
+ 
+  <!-- ── Newsletter ── -->
+  <div class="newsletter-wrap">
+    <h2>Subscribe on our newsletter</h2>
+    <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+    <div class="newsletter-form">
+      <div class="newsletter-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="email" placeholder="Email" class="newsletter-input" />
+      </div>
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+ 
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo footer-logo">
+          <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/><path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <span class="logo-text">Brand</span>
+        </a>
+        <p class="footer-desc">Best information about the company gies here but now lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="social-icon" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="#" class="social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+ 
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="#">About Us</a><a href="#">Find store</a><a href="#">Categories</a><a href="#">Blogs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Partnership</h4>
+        <a href="#">About Us</a><a href="#">Find store</a><a href="#">Categories</a><a href="#">Blogs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="#">Help Center</a><a href="#">Money Refund</a><a href="#">Shipping</a><a href="#">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <h4>For users</h4>
+        <a href="#">Login</a><a href="#">Register</a><a href="#">Settings</a><a href="#">My Orders</a>
+      </div>
+      <div class="footer-col footer-app">
+        <h4>Get app</h4>
+        <a href="#" class="app-store-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div><span class="app-sub">Download on the</span><span class="app-name">App Store</span></div>
+        </a>
+        <a href="#" class="app-store-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.19l12.6-12.6L13.42 8l-10.24 14c-.17.3-.2.67-.05 1 .02.27.03.54.05.76zM20.45 10.64l-2.72-1.57-3.43 3.43 3.43 3.43 2.75-1.59c.78-.45.78-1.25-.03-1.7zM2 2.27c-.06.2-.06.42 0 .62v18.82c0 .2.06.42.18.6L13.42 11 2 2.27zM16.29 3.24L3.69.28c-.35-.06-.69.01-.99.19L13.42 11l2.87-2.87-2.87-2.86 2.87-1.03z"/></svg>
+          <div><span class="app-sub">Get it on</span><span class="app-name">Google Play</span></div>
+        </a>
+      </div>
+    </div>
+  </footer>
+ 
+  <div class="footer-bottom">
+    <span>© 2023 Ecommerce.</span>
+    <a href="#" class="footer-lang">🇺🇸 English <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></a>
+  </div>
  
   <script>
     let totalSecs = 4 * 86400 + 13 * 3600 + 34 * 60 + 56;

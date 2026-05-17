@@ -2,16 +2,19 @@ import productModel from "../../dataBase/models/product.model.js"
 
 
 
-export const addProduct = async(req,res)=>{
-let {name,price,category,description,stock} = req.body
-const addedProduct = await productModel.insertMany({name,price,category,description,stock})
+export const addProduct = async (req, res) => {
 
+    const { name, price, category,description,stock } = req.body;
 
-res.json({messsege:"Products", addedProduct})
+    await productModel.create({
+        name,
+        price,
+        category
+    });
 
+    res.redirect("/products");
 
-
-}
+};
 
 export const updateProduct = async(req,res)=>{
 let {_id,name,price,category,description,stock} = req.body
