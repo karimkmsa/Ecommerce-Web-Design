@@ -6,13 +6,257 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <link rel="stylesheet" href="/Backend/public/style.css">
+<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
-    <h1>Welcome To E-Commerce App</h1>
+
+
+ <header class="header">
+    <div class="header-top">
+      <a href="/" class="logo">
+        <div class="logo-icon">
+       <img src="\assets\Layout\Brand\logo-colored.png" alt="brandLogo">
+        </div>
+      </a>
+ 
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search" />
+        <div class="search-divider"></div>
+        <select class="search-category">
+          <option>All category</option>
+          <option>Electronics</option>
+          <option>Clothing</option>
+          <option>Home</option>
+        </select>
+        <button class="search-btn">Search</button>
+      </div>
+ 
+      <nav class="header-icons">
+        <a href="#" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Profile</span>
+        </a>
+        <a href="#" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span>Message</span>
+        </a>
+        <a href="#" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          <span>Orders</span>
+        </a>
+        <a href="#" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>My cart</span>
+        </a>
+      </nav>
+    </div>
+ 
+    <div class="header-nav">
+      <div class="nav-left">
+        <a href="#" class="nav-link nav-category">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          All category
+        </a>
+        <a href="#" class="nav-link">Hot offers</a>
+        <a href="#" class="nav-link">Gift boxes</a>
+        <a href="#" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Menu item</a>
+        <a href="#" class="nav-link nav-dropdown">Help
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-link nav-dropdown">English, USD
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <a href="#" class="nav-link nav-dropdown">Ship to 🇩🇪
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+ 
+  <main class="main">
+ 
+    <!-- ── SECTION 1: Hero ── -->
+    <section class="hero-section">
+      <aside class="category-sidebar">
+        <a href="#" class="category-item active">Automobiles</a>
+        <a href="#" class="category-item">Clothes and wear</a>
+        <a href="#" class="category-item">Home interiors</a>
+        <a href="#" class="category-item">Computer and tech</a>
+        <a href="#" class="category-item">Tools, equipments</a>
+        <a href="#" class="category-item">Sports and outdoor</a>
+        <a href="#" class="category-item">Animal and pets</a>
+        <a href="#" class="category-item">Machinery tools</a>
+        <a href="#" class="category-item">More category</a>
+      </aside>
+ 
+      <div class="hero-banner">
+        <div class="hero-text">
+          <p class="hero-sub">Latest trending</p>
+          <h1 class="hero-title">Electronic items</h1>
+          <a href="#" class="hero-btn">Learn more</a>
+        </div>
+        <div class="hero-image">
+          <div class="hero-bg"></div>
+            <path d="M30 130 Q30 50 110 50 Q190 50 190 130" stroke="#111" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <rect x="12" y="118" width="30" height="55" rx="15" fill="#111"/>
+            <rect x="16" y="122" width="22" height="47" rx="12" fill="#2a2a2a"/>
+            <rect x="178" y="118" width="30" height="55" rx="15" fill="#111"/>
+            <rect x="182" y="122" width="22" height="47" rx="12" fill="#2a2a2a"/>
+          </svg>
+        </div>
+      </div>
+ 
+      <aside class="hero-right">
+        <div class="login-card">
+          <div class="user-info">
+            <div class="user-avatar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div>
+              <p class="user-name">Hi, user</p>
+              <p class="user-sub">let's get started</p>
+            </div>
+          </div>
+          <a href="#" class="btn-join">Join now</a>
+          <a href="#" class="btn-login">Log in</a>
+        </div>
+        <div class="promo-card promo-warm">
+          <p>Get US $10 off with a new supplier</p>
+        </div>
+        <div class="promo-card promo-blue">
+          <p>Send quotes with supplier preferences</p>
+        </div>
+      </aside>
+    </section>
+ 
+    <!-- ── SECTION 2: Deals + Home and outdoor ── -->
+    <section class="content-section">
+ 
+      <!-- Deals banner -->
+      <div class="deals-banner">
+        <div class="deals-info">
+          <h2>Deals and offers</h2>
+          <p class="deals-sub">Hygiene equipments</p>
+          <div class="countdown">
+            <div class="time-block"><span class="num" id="days">04</span><span class="t-label">Days</span></div>
+            <div class="time-block"><span class="num" id="hours">13</span><span class="t-label">Hour</span></div>
+            <div class="time-block"><span class="num" id="mins">34</span><span class="t-label">Min</span></div>
+            <div class="time-block"><span class="num" id="secs">56</span><span class="t-label">Sec</span></div>
+          </div>
+        </div>
+        <div class="deals-products">
+ 
+          <div class="deal-card">
+            <div class="deal-img">
+              <svg viewBox="0 0 56 56" fill="none"><rect x="14" y="8" width="28" height="40" rx="6" fill="#d0d0d0"/><rect x="17" y="11" width="22" height="22" rx="3" fill="#888"/><circle cx="28" cy="42" r="3" fill="#aaa"/><rect x="22" y="15" width="12" height="2" rx="1" fill="#bbb"/><rect x="18" y="4" width="4" height="6" rx="2" fill="#b0b0b0"/><rect x="34" y="4" width="4" height="6" rx="2" fill="#b0b0b0"/><rect x="18" y="48" width="4" height="6" rx="2" fill="#b0b0b0"/><rect x="34" y="48" width="4" height="6" rx="2" fill="#b0b0b0"/></svg>
+            </div>
+            <span class="deal-name">Smart watches</span>
+            <span class="deal-badge">-25%</span>
+          </div>
+ 
+          <div class="deal-card">
+            <div class="deal-img">
+              <svg viewBox="0 0 56 56" fill="none"><rect x="10" y="14" width="24" height="38" rx="4" fill="#1e1e1e"/><rect x="12" y="16" width="20" height="30" rx="2" fill="#3a3a3a"/><rect x="18" y="14" width="8" height="3" rx="1.5" fill="#444"/><circle cx="22" cy="48" r="2" fill="#555"/><rect x="36" y="12" width="10" height="30" rx="2" fill="#2a2a2a"/><rect x="37" y="13" width="8" height="18" rx="1" fill="#444"/></svg>
+            </div>
+            <span class="deal-name">Laptops</span>
+            <span class="deal-badge">-15%</span>
+          </div>
+ 
+          <div class="deal-card">
+            <div class="deal-img">
+              <svg viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="26" rx="16" ry="14" fill="#1a1a1a"/><ellipse cx="28" cy="26" rx="11" ry="10" fill="#222"/><ellipse cx="28" cy="26" rx="6" ry="5" fill="#1155cc"/><path d="M12 14 Q8 20 10 28" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M44 14 Q48 20 46 28" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M12 14 Q8 8 14 6" stroke="#2277ff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M44 14 Q48 8 42 6" stroke="#2277ff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+            </div>
+            <span class="deal-name">GoPro cameras</span>
+            <span class="deal-badge">-40%</span>
+          </div>
+ 
+          <div class="deal-card">
+            <div class="deal-img">
+              <svg viewBox="0 0 56 56" fill="none"><path d="M14 28 Q14 14 28 14 Q42 14 42 28" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="8" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/><rect x="40" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/><rect x="9" y="28" width="6" height="12" rx="3" fill="#333"/><rect x="41" y="28" width="6" height="12" rx="3" fill="#333"/></svg>
+            </div>
+            <span class="deal-name">Headphones</span>
+            <span class="deal-badge">-25%</span>
+          </div>
+ 
+          <div class="deal-card">
+            <div class="deal-img">
+              <svg viewBox="0 0 56 56" fill="none"><rect x="10" y="18" width="36" height="24" rx="4" fill="#1e1e1e"/><rect x="12" y="20" width="32" height="20" rx="3" fill="#2a2a2a"/><circle cx="28" cy="30" r="8" fill="#1a1a1a"/><circle cx="28" cy="30" r="5" fill="#333"/><circle cx="28" cy="30" r="2.5" fill="#555"/><rect x="30" y="13" width="8" height="7" rx="2" fill="#2a2a2a"/></svg>
+            </div>
+            <span class="deal-name">Canon cameras</span>
+            <span class="deal-badge">-25%</span>
+          </div>
+ 
+        </div>
+      </div>
+ 
+      <!-- Home and outdoor -->
+      <div class="category-grid-section">
+        <div class="cat-promo cat-promo-home">
+          <h3>Home and<br>outdoor</h3>
+          <a href="#" class="source-btn">Source now</a>
+        </div>
+        <div class="cat-products">
+          <div class="cat-item"><div><p class="cat-item-name">Soft chairs</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="10" y="26" width="36" height="18" rx="6" fill="#c8a97a"/><rect x="14" y="20" width="28" height="10" rx="5" fill="#d4b896"/><rect x="8" y="28" width="8" height="18" rx="4" fill="#b89060"/><rect x="40" y="28" width="8" height="18" rx="4" fill="#b89060"/><rect x="16" y="42" width="6" height="10" rx="3" fill="#8a6a40"/><rect x="34" y="42" width="6" height="10" rx="3" fill="#8a6a40"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Sofa & chair</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="36" rx="14" ry="8" fill="#8B4513"/><ellipse cx="28" cy="30" rx="10" ry="6" fill="#a0522d"/><rect x="20" y="40" width="4" height="8" rx="2" fill="#7a3b10"/><rect x="32" y="40" width="4" height="8" rx="2" fill="#7a3b10"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Kitchen dishes</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="32" rx="16" ry="4" fill="#d0c8b8"/><rect x="26" y="14" width="4" height="20" rx="2" fill="#d0d0d0"/><ellipse cx="28" cy="14" rx="8" ry="4" fill="#e8e8e8"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Smart watches</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="16" y="10" width="24" height="36" rx="6" fill="#d0d0d0"/><rect x="19" y="13" width="18" height="18" rx="3" fill="#888"/><circle cx="28" cy="40" r="3" fill="#aaa"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Kitchen mixer</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 100</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="20" y="8" width="16" height="24" rx="4" fill="#e0e0e0"/><circle cx="28" cy="16" r="6" fill="#ccc"/><rect x="24" y="30" width="8" height="18" rx="2" fill="#d0d0d0"/><ellipse cx="28" cy="48" rx="10" ry="4" fill="#bbb"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Blenders</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 39</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><path d="M18 14 L20 42 L36 42 L38 14 Z" fill="#ddd"/><rect x="22" y="8" width="12" height="8" rx="3" fill="#ccc"/><ellipse cx="28" cy="42" rx="10" ry="3" fill="#bbb"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Home appliance</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="20" y="10" width="8" height="36" rx="4" fill="#6a9b6a"/><ellipse cx="24" cy="46" rx="8" ry="4" fill="#4a7a4a"/><ellipse cx="26" cy="22" rx="10" ry="8" fill="#7ab87a"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Coffee maker</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 10</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="14" y="16" width="24" height="30" rx="4" fill="#1a1a1a"/><rect x="16" y="18" width="20" height="22" rx="3" fill="#2a2a2a"/><rect x="36" y="20" width="8" height="16" rx="2" fill="#333"/><ellipse cx="26" cy="48" rx="12" ry="4" fill="#111"/></svg></div></div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 3: Consumer Electronics ── -->
+    <section class="content-section">
+      <div class="category-grid-section">
+        <div class="cat-promo cat-promo-electronics">
+          <h3>Consumer<br>electronics</h3>
+          <a href="#" class="source-btn">Source now</a>
+        </div>
+        <div class="cat-products">
+          <div class="cat-item"><div><p class="cat-item-name">Smart watches</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="16" y="10" width="24" height="36" rx="6" fill="#d0d0d0"/><rect x="19" y="13" width="18" height="18" rx="3" fill="#888"/><circle cx="28" cy="40" r="3" fill="#aaa"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Cameras</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 89</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="14" y="16" width="24" height="30" rx="4" fill="#1a1a1a"/><rect x="36" y="20" width="8" height="16" rx="2" fill="#333"/><ellipse cx="26" cy="48" rx="12" ry="4" fill="#111"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Headphones</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 10</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><path d="M14 28 Q14 14 28 14 Q42 14 42 28" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="8" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/><rect x="40" y="27" width="8" height="14" rx="4" fill="#1a1a1a"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Smartphones</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="14" y="6" width="28" height="44" rx="6" fill="#e8403a"/><rect x="16" y="10" width="24" height="34" rx="3" fill="#cc2020"/><circle cx="28" cy="48" r="2" fill="#ff6060"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Gaming set</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 35</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="8" y="18" width="40" height="28" rx="4" fill="#1e1e1e"/><rect x="10" y="20" width="36" height="20" rx="3" fill="#3a3a3a"/><rect x="4" y="44" width="48" height="3" rx="1.5" fill="#222"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Laptop & PC</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 340</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="8" y="14" width="40" height="28" rx="4" fill="#1e1e1e"/><rect x="10" y="16" width="36" height="22" rx="2" fill="#3a3a3a"/><rect x="4" y="42" width="48" height="4" rx="2" fill="#333"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Smartphones</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 19</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="14" y="6" width="28" height="44" rx="6" fill="#c0c0c0"/><rect x="16" y="10" width="24" height="34" rx="3" fill="#e0e8ff"/><circle cx="28" cy="48" r="2" fill="#aaa"/></svg></div></div>
+          <div class="cat-item"><div><p class="cat-item-name">Electric kettle</p><p class="cat-item-from">From</p><p class="cat-item-price">USD 240</p></div><div class="cat-item-img"><svg viewBox="0 0 56 56" fill="none"><rect x="16" y="10" width="4" height="8" rx="2" fill="#555"/><path d="M14 18 Q10 24 12 34 Q14 44 28 44 Q42 44 44 34 Q46 24 42 18 Z" fill="#1a1a1a"/><path d="M40 24 Q48 26 46 32" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="28" cy="44" rx="14" ry="4" fill="#111"/></svg></div></div>
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <script>
+    let totalSecs = 4 * 86400 + 13 * 3600 + 34 * 60 + 56;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      if (totalSecs <= 0) return;
+      totalSecs--;
+      document.getElementById('days').textContent  = pad(Math.floor(totalSecs / 86400));
+      document.getElementById('hours').textContent = pad(Math.floor((totalSecs % 86400) / 3600));
+      document.getElementById('mins').textContent  = pad(Math.floor((totalSecs % 3600) / 60));
+      document.getElementById('secs').textContent  = pad(totalSecs % 60);
+    }
+    setInterval(tick, 1000);
+  </script>
 
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
