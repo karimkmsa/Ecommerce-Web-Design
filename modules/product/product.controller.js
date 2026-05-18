@@ -1,7 +1,17 @@
 import productModel from "../../dataBase/models/product.model.js"
 
 
+export const getProduct = async (req, res) => {
 
+    const allproducts = await productModel.find();
+
+    res.render("ProductListingPage", {
+
+        allproducts
+
+    });
+
+};
 export const addProduct = async (req, res) => {
 
     const { name, price, category,description,stock } = req.body;
@@ -40,12 +50,24 @@ res.json({messsege:"Products", deletedProduct})
 
 }
 
-export const getProduct = async(req,res)=>{
-const allproducts = await productModel.find()
+export const seedProduct = async (req, res) => {
 
+    const product = await productModel.create({
 
-res.json({messsege:"Products", allproducts})
+        name: "iPhone 15",
 
+        price: 1000,
 
+        category: "electronics",
 
-}
+        description: "Apple Phone",
+
+        stock: 20,
+
+        image: "/assets/iphone.jpg"
+
+    });
+
+    res.json(product);
+
+};

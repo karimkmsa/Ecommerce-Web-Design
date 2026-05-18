@@ -1,4 +1,3 @@
-import { name } from "ejs";
 import mongoose from "mongoose";
 
 
@@ -25,6 +24,9 @@ type:String
 stock:{
 type:Number
 
+},
+image:{
+    type:String
 }
 
 

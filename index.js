@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { connection } from './dataBase/connection.js';
-
+import productRouter from './modules/product/product.routes.js';
 const app = express();
 const port = 3000;
 
@@ -29,12 +29,7 @@ app.get("/", (req, res) => {
 
 
 // Products Page
-app.get("/products", (req, res) => {
-
-    res.render("ProductListingPage");
-
-});
-
+app.use("/products", productRouter);
 
 // Product Details Page
 app.get("/products/:id", (req, res) => {
