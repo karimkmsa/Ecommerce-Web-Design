@@ -1,18 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Product Details</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail – Brand Store</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
-
 <body>
 
-    <h1>Product Details</h1>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <a href="preview.html" class="logo">
+        <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/><path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <span class="logo-text">Brand</span>
+      </a>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search" />
+        <div class="search-divider"></div>
+        <select class="search-category"><option>All category</option><option selected>Electronics</option></select>
+        <button class="search-btn">Search</button>
+      </div>
+      <nav class="header-icons">
+        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Profile</span></a>
+        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>Message</span></a>
+        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><span>Orders</span></a>
+        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span>My cart</span></a>
+      </nav>
+    </div>
+    <div class="header-nav">
+      <div class="nav-left">
+        <a href="#" class="nav-link nav-category"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg> All category</a>
+        <a href="#" class="nav-link">Hot offers</a>
+        <a href="#" class="nav-link">Gift boxes</a>
+        <a href="#" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Menu item</a>
+        <a href="#" class="nav-link nav-dropdown">Help <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-link nav-dropdown">English, USD <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a href="#" class="nav-link nav-dropdown">Ship to 🇩🇪 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+      </div>
+    </div>
+  </header>
 
-    <p>
-        Product ID: <%= id %>
-    </p>
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="breadcrumb-inner">
+      <a href="#">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="#">Clothing</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="#">Men's wear</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Summer clothing</span>
+    </div>
+  </div>
+
+  <!-- MAIN DETAIL -->
+  <div class="detail-wrapper">
+
+    <!-- TOP SECTION -->
+    <div class="detail-top">
+
+      <!-- Gallery -->
+      <div class="detail-gallery">
+        <div class="detail-main-img">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 30 L30 60 L55 70 L55 170 L145 170 L145 70 L170 60 L140 30 Q120 50 100 50 Q80 50 60 30Z" fill="#c8c8c8"/>
+            <path d="M60 30 Q80 50 100 50 Q120 50 140 30" fill="none" stroke="#aaa" stroke-width="2"/>
+            <path d="M55 70 L55 170 L145 170 L145 70" fill="#d5d5d5"/>
+            <line x1="75" y1="90" x2="125" y2="90" stroke="#bbb" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="75" y1="110" x2="125" y2="110" stroke="#bbb" stroke-width="1" stroke-dasharray="3,3"/>
+          </svg>
+        </div>
+        <div class="detail-thumbs">
+          <div class="detail-thumb active" onclick="selectThumb(this)"><svg viewBox="0 0 40 40" fill="none"><path d="M12 6L6 12 11 14 11 34 29 34 29 14 34 12 28 6Q20 10 20 10Q20 10 12 6Z" fill="#c8c8c8"/></svg></div>
+          <div class="detail-thumb" onclick="selectThumb(this)"><svg viewBox="0 0 40 40" fill="none"><path d="M12 6L6 12 11 14 11 34 29 34 29 14 34 12 28 6Q20 10 20 10Q20 10 12 6Z" fill="#e8e8e8"/></svg></div>
+          <div class="detail-thumb" onclick="selectThumb(this)"><svg viewBox="0 0 40 40" fill="none"><path d="M12 6L6 12 11 14 11 34 29 34 29 14 34 12 28 6Q20 10 20 10Q20 10 12 6Z" fill="#a0b8d0"/></svg></div>
+          <div class="detail-thumb" onclick="selectThumb(this)"><svg viewBox="0 0 40 40" fill="none"><path d="M12 6L6 12 11 14 11 34 29 34 29 14 34 12 28 6Q20 10 20 10Q20 10 12 6Z" fill="#d0c0a0"/></svg></div>
+          <div class="detail-thumb" onclick="selectThumb(this)"><svg viewBox="0 0 40 40" fill="none"><path d="M12 6L6 12 11 14 11 34 29 34 29 14 34 12 28 6Q20 10 20 10Q20 10 12 6Z" fill="#b0c0b0"/></svg></div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="detail-info">
+        <span class="detail-badge">In stock</span>
+        <h1 class="detail-title">Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle</h1>
+        <div class="detail-rating-row">
+          <div class="detail-stars">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#e0e0e0" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span>4.5</span><span>·</span><span>32 reviews</span><span>·</span><span>154 sold</span>
+        </div>
+
+        <div class="tier-pricing">
+          <div class="tier-item active"><span class="tier-qty">50-100 pcs</span><span class="tier-price">$98.00</span></div>
+          <div class="tier-item"><span class="tier-qty">100-700 pcs</span><span class="tier-price">$90.00</span></div>
+          <div class="tier-item"><span class="tier-qty">700+ pcs</span><span class="tier-price">$78.00</span></div>
+        </div>
+
+        <div class="detail-specs">
+          <span class="spec-label">Price:</span>    <span class="spec-value">Negotiable</span>
+          <span class="spec-label">Type:</span>     <span class="spec-value">Classic shoes</span>
+          <span class="spec-label">Material:</span> <span class="spec-value">Plastic material</span>
+          <span class="spec-label">Design:</span>   <span class="spec-value">Modern nice</span>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #f0f0f0;" />
+
+        <div class="detail-custom-row"><span class="detail-custom-label">Customization:</span><span class="detail-custom-value">Customized logo and design custom packages</span></div>
+        <div class="detail-custom-row"><span class="detail-custom-label">Protection:</span><span class="detail-custom-value">Refund Policy</span></div>
+        <div class="detail-custom-row"><span class="detail-custom-label">Warranty:</span><span class="detail-custom-value">2 years full warranty</span></div>
+      </div>
+
+      <!-- Supplier -->
+      <div class="detail-supplier">
+        <div class="supplier-card">
+          <div class="supplier-header">
+            <div class="supplier-avatar">G</div>
+            <div><p class="supplier-name">Supplier</p><p class="supplier-meta">Guanjin Trading LLC.</p></div>
+          </div>
+          <div class="supplier-badges">
+            <div class="supplier-badge-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> Germany, Berlin</div>
+            <div class="supplier-badge-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Verified Seller</div>
+            <div class="supplier-badge-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8l5 3v5h-5V8z"/></svg> Worldwide shipping</div>
+          </div>
+          <button class="btn-inquiry">Send inquiry</button>
+          <button class="btn-seller-profile">Seller's profile</button>
+          <a href="#" class="save-for-later">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Save for later
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS + YOU MAY LIKE -->
+    <div class="detail-tabs-section">
+      <div class="detail-tabs-card">
+        <div class="tabs-nav">
+          <button class="tab-btn active" onclick="switchTab('description',this)">Description</button>
+          <button class="tab-btn" onclick="switchTab('reviews',this)">Reviews</button>
+          <button class="tab-btn" onclick="switchTab('shipping',this)">Shipping</button>
+          <button class="tab-btn" onclick="switchTab('about',this)">About seller</button>
+        </div>
+        <div class="tab-panel active" id="tab-description">
+          <p class="tab-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p class="tab-desc-text">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+          <div class="tab-specs-grid">
+            <div class="tab-spec-row"><span class="tab-spec-label">Model</span><span class="tab-spec-val">#8786867</span><span class="tab-spec-label">Style</span><span class="tab-spec-val">Classic style</span></div>
+            <div class="tab-spec-row"><span class="tab-spec-label">Certificate</span><span class="tab-spec-val">ISO-898971212</span><span class="tab-spec-label">Size</span><span class="tab-spec-val">34mm x 450mm x 9mm</span></div>
+            <div class="tab-spec-row"><span class="tab-spec-label">Memory</span><span class="tab-spec-val">36GB RAM</span><span class="tab-spec-label"></span><span class="tab-spec-val"></span></div>
+          </div>
+          <ul class="feature-list">
+            <li>Some great feature name here</li>
+            <li>Lorem ipsum dolor sit amet, consectetur</li>
+            <li>Duis aute irure dolor in reprehenderit</li>
+            <li>Some great feature name here</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="tab-reviews"><p class="tab-desc-text">No reviews yet. Be the first to review this product.</p></div>
+        <div class="tab-panel" id="tab-shipping"><p class="tab-desc-text">Worldwide shipping available. Delivery within 7–14 business days. Free shipping on orders over 100 units.</p></div>
+        <div class="tab-panel" id="tab-about"><p class="tab-desc-text">Guanjin Trading LLC. is a verified seller based in Germany, Berlin with 5+ years of experience in international trade. All products come with a 2-year warranty.</p></div>
+      </div>
+
+      <!-- You may like -->
+      <div class="you-may-like">
+        <h4>You may like</h4>
+        <div class="yml-item"><div class="yml-img"><svg viewBox="0 0 40 40" fill="none"><rect x="8" y="10" width="24" height="22" rx="3" fill="#2a4a7a"/><rect x="10" y="12" width="20" height="18" rx="2" fill="#3a5a9a"/></svg></div><div><p class="yml-name">Men Blazers Sets Elegant Formal</p><p class="yml-price">$7.00 – $99.50</p></div></div>
+        <div class="yml-item"><div class="yml-img"><svg viewBox="0 0 40 40" fill="none"><path d="M12 8L8 12 11 13 11 32 29 32 29 13 32 12 28 8Q20 12 20 12Q20 12 12 8Z" fill="#3a7a5a"/></svg></div><div><p class="yml-name">Men Shirt Sleeve Polo Contrast</p><p class="yml-price">$7.00 – $50.90</p></div></div>
+        <div class="yml-item"><div class="yml-img"><svg viewBox="0 0 40 40" fill="none"><rect x="10" y="6" width="20" height="28" rx="5" fill="#b0b0b0"/><rect x="12" y="8" width="16" height="16" rx="3" fill="#666"/><circle cx="20" cy="30" r="2" fill="#888"/></svg></div><div><p class="yml-name">Apple Watch Series Space Gray</p><p class="yml-price">$7.00 – $99.50</p></div></div>
+        <div class="yml-item"><div class="yml-img"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="14" width="28" height="14" rx="3" fill="#e88030"/><rect x="8" y="16" width="24" height="10" rx="2" fill="#d07020"/></svg></div><div><p class="yml-name">Basketball Crew Socks Long Buff</p><p class="yml-price">$7.00 – $99.50</p></div></div>
+        <div class="yml-item"><div class="yml-img"><svg viewBox="0 0 40 40" fill="none"><path d="M12 8L8 12 11 13 11 32 29 32 29 13 32 12 28 8Q20 12 20 12Q20 12 12 8Z" fill="#c8c8c8"/></svg></div><div><p class="yml-name">New Summer Men's Solid T-Shirts</p><p class="yml-price">$7.00 – $99.50</p></div></div>
+      </div>
+    </div>
+
+    <!-- RELATED PRODUCTS -->
+    <div class="related-section">
+      <h3>Related products</h3>
+      <div class="related-grid">
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><rect x="14" y="6" width="28" height="44" rx="6" fill="#e8403a"/><rect x="16" y="10" width="24" height="34" rx="3" fill="#cc2020"/><circle cx="30" cy="48" r="2" fill="#ff6060"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$32.00–$40.00</p></div>
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><rect x="16" y="10" width="24" height="36" rx="6" fill="#c8c8c8"/><rect x="18" y="12" width="20" height="24" rx="3" fill="#888"/><circle cx="28" cy="42" r="3" fill="#aaa"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$33.00–$40.00</p></div>
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><path d="M14 30 Q14 14 30 14 Q46 14 46 30" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="8" y="28" width="8" height="14" rx="4" fill="#f0f0f0"/><rect x="44" y="28" width="8" height="14" rx="4" fill="#f0f0f0"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$33.00–$40.00</p></div>
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><rect x="10" y="6" width="28" height="44" rx="6" fill="#1e1e1e"/><rect x="12" y="10" width="24" height="30" rx="3" fill="#3a3a3a"/><circle cx="24" cy="48" r="2" fill="#555"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$32.00–$40.00</p></div>
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><rect x="16" y="12" width="4" height="8" rx="2" fill="#555"/><path d="M14 20 Q10 26 12 36 Q14 46 30 46 Q46 46 48 36 Q50 26 46 20 Z" fill="#1a1a1a"/><path d="M42 26 Q50 28 48 34" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$32.00–$45.00</p></div>
+        <div class="related-card"><div class="related-img"><svg viewBox="0 0 60 60" fill="none"><rect x="10" y="18" width="40" height="26" rx="4" fill="#b89060"/><rect x="12" y="20" width="16" height="22" rx="3" fill="#c8a070"/><rect x="30" y="20" width="18" height="22" rx="3" fill="#a87850"/></svg></div><p class="related-name">Xiaomi Redmi 8 Original</p><p class="related-price">$32.00–$40.00</p></div>
+      </div>
+    </div>
+
+    <!-- PROMO BANNER -->
+    <div class="promo-banner-strip">
+      <div>
+        <h3>Super discount on more than 100 USD</h3>
+        <p>Have you ever finally just write dummy info</p>
+      </div>
+      <button class="promo-banner-btn">Shop now</button>
+    </div>
+
+  </div><!-- /detail-wrapper -->
+
+  <!-- Newsletter -->
+  <div class="newsletter-wrap">
+    <h2>Subscribe on our newsletter</h2>
+    <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+    <div class="newsletter-form">
+      <div class="newsletter-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="email" placeholder="Email" class="newsletter-input" />
+      </div>
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo footer-logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/><path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="logo-text">Brand</span></a>
+        <p class="footer-desc">Best information about the company gies here but now lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="social-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+          <a href="#" class="social-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="social-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>About</h4><a href="#">About Us</a><a href="#">Find store</a><a href="#">Categories</a><a href="#">Blogs</a></div>
+      <div class="footer-col"><h4>Partnership</h4><a href="#">About Us</a><a href="#">Find store</a><a href="#">Categories</a><a href="#">Blogs</a></div>
+      <div class="footer-col"><h4>Information</h4><a href="#">Help Center</a><a href="#">Money Refund</a><a href="#">Shipping</a><a href="#">Contact us</a></div>
+      <div class="footer-col"><h4>For users</h4><a href="#">Login</a><a href="#">Register</a><a href="#">Settings</a><a href="#">My Orders</a></div>
+      <div class="footer-col footer-app">
+        <h4>Get app</h4>
+        <a href="#" class="app-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="app-sub">Download on the</span><span class="app-name">App Store</span></div></a>
+        <a href="#" class="app-store-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.19l12.6-12.6L13.42 8l-10.24 14c-.17.3-.2.67-.05 1 .02.27.03.54.05.76zM20.45 10.64l-2.72-1.57-3.43 3.43 3.43 3.43 2.75-1.59c.78-.45.78-1.25-.03-1.7zM2 2.27c-.06.2-.06.42 0 .62v18.82c0 .2.06.42.18.6L13.42 11 2 2.27z"/></svg><div><span class="app-sub">Get it on</span><span class="app-name">Google Play</span></div></a>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2023 Ecommerce.</span>
+    <a href="#" class="footer-lang">🇺🇸 English <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></a>
+  </div>
+
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+    function selectThumb(el) {
+      document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+    document.querySelectorAll('.tier-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.tier-item').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
-
 </html>

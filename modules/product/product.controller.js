@@ -41,7 +41,7 @@ res.json({messsege:"Products", updatedProduct})
 
 export const deleteProduct = async(req,res)=>{
 let {_id} = req.body
-const deletedProduct = await productModel.deleteOne(_id)
+const deletedProduct = await productModel.deleteOne({_id})
 
 
 res.json({messsege:"Products", deletedProduct})
@@ -64,7 +64,7 @@ export const seedProduct = async (req, res) => {
 
         stock: 20,
 
-        image: "/assets/iphone.jpg"
+        image: "assets\Image\tech\image 33.png"
 
     });
 
