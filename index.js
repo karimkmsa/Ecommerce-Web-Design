@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 
 // Products Page
 app.use("/products", productRouter);
+app.use("/dashboard",productRouter)
 
 // Product Details Page
 app.get("/products/:id", (req, res) => {
@@ -41,6 +42,7 @@ app.get("/products/:id", (req, res) => {
     });
 
 });
+
 
 app.listen(port, () => {
 

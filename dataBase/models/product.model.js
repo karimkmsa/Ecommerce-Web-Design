@@ -27,8 +27,21 @@ type:Number
 },
 image:{
     type:String
-}
+},
+rating: {
+    type: Number,
+    default: 4.5
+},
 
+reviews: {
+    type: Number,
+    default: 0
+},
+
+sold: {
+    type: Number,
+    default: 0
+}
 
 
 

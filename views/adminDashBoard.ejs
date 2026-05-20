@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – Brand Store</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ════════════════════════════════
+       SIDEBAR
+  ════════════════════════════════════ -->
+  <aside class="admin-sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+          <path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="sidebar-logo-text">Brand</span>
+      <span class="sidebar-logo-badge">Admin</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Main</div>
+
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="sidebar-label">Dashboard</span>
+      </a>
+      <a href="#" class="sidebar-nav-item active" onclick="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="sidebar-label">Products</span>
+        <span class="sidebar-badge" id="sidebarCount">6</span>
+      </a>
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="sidebar-label">Orders</span>
+        <span class="sidebar-badge">12</span>
+      </a>
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <span class="sidebar-label">Customers</span>
+      </a>
+
+      <div class="sidebar-section-title">Management</div>
+
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+        <span class="sidebar-label">Categories</span>
+      </a>
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <span class="sidebar-label">Discounts</span>
+      </a>
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="sidebar-label">Analytics</span>
+      </a>
+
+      <div class="sidebar-section-title">System</div>
+
+      <a href="#" class="sidebar-nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41"/></svg>
+        <span class="sidebar-label">Settings</span>
+      </a>
+    </nav>
+
+    <!-- User footer -->
+    <div class="sidebar-footer">
+      <div class="sidebar-avatar">A</div>
+      <div>
+        <div class="sidebar-user-name">Admin User</div>
+        <div class="sidebar-user-role">Super Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ════════════════════════════════
+       MAIN
+  ════════════════════════════════════ -->
+  <div class="admin-main" id="adminMain">
+
+    <!-- Top bar -->
+    <div class="admin-topbar">
+      <button class="topbar-toggle" onclick="toggleSidebar()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-breadcrumb">
+        <a href="#" style="color:#888">Dashboard</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Products</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search…" id="topbarSearch" oninput="filterProducts()" />
+        </div>
+        <button class="topbar-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="topbar-notif-dot"></span>
+        </button>
+        <button class="topbar-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Stats -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statTotal">6</div>
+            <div class="stat-label">Total Products</div>
+          </div>
+          <div class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+            +12%
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statInStock">0</div>
+            <div class="stat-label">In Stock</div>
+          </div>
+          <div class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+            +5%
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statLowStock">0</div>
+            <div class="stat-label">Low Stock</div>
+          </div>
+          <div class="stat-trend down">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 9 12 15 6 9"/></svg>
+            -3%
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statOutStock">0</div>
+            <div class="stat-label">Out of Stock</div>
+          </div>
+          <div class="stat-trend down">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 9 12 15 6 9"/></svg>
+            -1%
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Table -->
+      <div class="admin-table-section">
+        <div class="table-header">
+          <div>
+            <div class="table-title">Products <span id="tableCount">(6 items)</span></div>
+          </div>
+          <div class="table-actions">
+            <div class="tbl-search-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Search products…" id="tableSearch" oninput="filterProducts()" />
+            </div>
+            <select class="tbl-filter-select" id="catFilter" onchange="filterProducts()">
+              <option value="">All Categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="fashion">Fashion</option>
+              <option value="sports">Sports</option>
+            </select>
+            <button class="btn-add-product" onclick="openAddModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Product
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table class="products-table" id="productsTable">
+          <thead>
+            <tr>
+              <th><input type="checkbox" class="tbl-checkbox" id="checkAll" onchange="toggleAll(this)" /></th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="table-footer">
+          <div class="table-info" id="tableInfo">Showing 1–6 of 6 products</div>
+          <div class="table-pages">
+            <button class="tbl-page-btn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="tbl-page-btn active">1</button>
+            <button class="tbl-page-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+
+
+  <!-- ════════════════════════════════
+       ADD / EDIT MODAL
+  ════════════════════════════════════ --> 
+<!-- ════════════════════════════════
+     ADD / EDIT MODAL
+════════════════════════════════ -->
+<div class="modal-overlay" id="formModal">
+
+  <div class="modal-box">
+
+    <!-- Header -->
+    <div class="modal-head">
+
+      <h2 class="modal-title" id="formModalTitle">
+        Add New Product
+      </h2>
+
+      <button 
+        type="button"
+        class="modal-close" 
+        onclick="closeModal('formModal')"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- FORM -->
+    <form 
+      id="productForm"
+      action="/dashboard/add-product"
+      method="POST"
+    >
+
+      <!-- hidden id for edit -->
+      <input type="hidden" name="_id" id="productId" />
+
+      <div class="modal-body">
+
+        <!-- Image Upload -->
+        <div class="modal-field">
+
+          <label>Product Image</label>
+
+          <div 
+            class="img-upload-area" 
+            id="uploadArea" 
+            onclick="document.getElementById('imgFile').click()"
+            ondragover="event.preventDefault();this.classList.add('dragover')"
+            ondragleave="this.classList.remove('dragover')"
+            ondrop="handleDrop(event)"
+          >
+
+            <input 
+              type="file" 
+              id="imgFile" 
+              accept="image/*" 
+              onchange="previewImage(event)" 
+            />
+
+            <div class="img-upload-icon">
+
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+
+            </div>
+
+            <p class="img-upload-text">
+              <span>Click to upload</span> or drag & drop
+            </p>
+
+            <p class="img-upload-text" style="font-size:11px;color:#bbb;margin-top:4px;">
+              PNG, JPG, GIF up to 10MB
+            </p>
+
+            <img id="imgPreview" class="img-preview" alt="Preview" />
+
+          </div>
+
+          <!-- image url -->
+          <input 
+            type="text"
+            name="image"
+            id="fieldImage"
+            class="modal-input"
+            placeholder="Paste image URL"
+          />
+
+        </div>
+
+        <!-- Product Name -->
+        <div class="modal-field">
+
+          <label for="fieldName">
+            Product Name <span>*</span>
+          </label>
+
+          <input 
+            type="text" 
+            id="fieldName" 
+            name="name"
+            class="modal-input" 
+            placeholder="e.g. Nike Air Max 2024" 
+          />
+
+          <span class="auth-error-msg" id="errName">
+            Product name is required.
+          </span>
+
+        </div>
+
+        <!-- Price + Category -->
+        <div class="modal-field-row">
+
+          <div class="modal-field">
+
+            <label for="fieldPrice">
+              Price (USD) <span>*</span>
+            </label>
+
+            <input 
+              type="number" 
+              id="fieldPrice" 
+              name="price"
+              class="modal-input" 
+              placeholder="0.00" 
+              min="0" 
+              step="0.01" 
+            />
+
+            <span class="auth-error-msg" id="errPrice">
+              Enter a valid price.
+            </span>
+
+          </div>
+
+          <div class="modal-field">
+
+            <label for="fieldCategory">
+              Category <span>*</span>
+            </label>
+
+            <select 
+              id="fieldCategory" 
+              name="category"
+              class="modal-select"
+            >
+
+              <option value="">
+                Select category
+              </option>
+
+              <option value="electronics">
+                Electronics
+              </option>
+
+              <option value="fashion">
+                Fashion
+              </option>
+
+              <option value="sports">
+                Sports
+              </option>
+
+            </select>
+
+            <span class="auth-error-msg" id="errCategory">
+              Select a category.
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- Stock -->
+        <div class="modal-field">
+
+          <label for="fieldStock">
+            Stock Quantity <span>*</span>
+          </label>
+
+          <input 
+            type="number" 
+            id="fieldStock" 
+            name="stock"
+            class="modal-input" 
+            placeholder="0" 
+            min="0" 
+          />
+
+          <span class="auth-error-msg" id="errStock">
+            Enter a valid stock quantity.
+          </span>
+
+        </div>
+
+        <!-- Description -->
+        <div class="modal-field">
+
+          <label for="fieldDesc">
+            Description
+          </label>
+
+          <textarea 
+            id="fieldDesc" 
+            name="description"
+            class="modal-textarea" 
+            placeholder="Describe the product…"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+
+        <button 
+          type="button"
+          class="btn-cancel" 
+          onclick="closeModal('formModal')"
+        >
+          Cancel
+        </button>
+
+        <button 
+          type="submit"
+          class="btn-save"
+        >
+          Save Product
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+<script>// ─── ADD ────────────────────────────────
+function openAddModal() {
+
+  document.getElementById('formModalTitle').textContent =
+    'Add New Product';
+
+  document.getElementById('productForm').action =
+    '/dashboard/add-product';
+
+  document.getElementById('productId').value = '';
+
+  clearForm();
+
+  openModal('formModal');
+}
+
+
+// ─── EDIT ───────────────────────────────
+function openEdit(id) {
+
+  const p = products.find(x => x.id === id);
+
+  document.getElementById('formModalTitle').textContent =
+    'Edit Product';
+
+  document.getElementById('productForm').action =
+    '/dashboard/update-product';
+
+  document.getElementById('productId').value = p.id;
+
+  document.getElementById('fieldName').value =
+    p.name;
+
+  document.getElementById('fieldPrice').value =
+    p.price;
+
+  document.getElementById('fieldCategory').value =
+    p.category;
+
+  document.getElementById('fieldStock').value =
+    p.stock;
+
+  document.getElementById('fieldDesc').value =
+    p.description;
+
+  document.getElementById('fieldImage').value =
+    p.image || '';
+
+  const preview = document.getElementById('imgPreview');
+
+  if (p.image) {
+    preview.src = p.image;
+    preview.style.display = 'block';
+  } else {
+    preview.style.display = 'none';
+  }
+
+  openModal('formModal');
+}
+
+
+// ─── DELETE ─────────────────────────────
+function openDelete(id) {
+
+  deletingId = id;
+
+  const p = products.find(x => x.id === id);
+
+  document.getElementById('deleteName').textContent =
+    `"${p.name}"`;
+
+  openModal('deleteModal');
+}
+
+function confirmDelete() {
+
+  window.location.href =
+    `/dashboard/delete-product/${deletingId}`;
+}</script>
+  <!-- ════════════════════════════════
+       VIEW MODAL
+  ════════════════════════════════════ -->
+  <div class="modal-overlay" id="viewModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 class="modal-title">Product Details</h2>
+        <button class="modal-close" onclick="closeModal('viewModal')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="view-modal-img" id="viewImg"></div>
+        <div class="view-detail-grid">
+          <div class="view-detail-item"><label>Product Name</label><p id="viewName">–</p></div>
+          <div class="view-detail-item"><label>Category</label><p id="viewCat">–</p></div>
+          <div class="view-detail-item"><label>Price</label><p id="viewPrice">–</p></div>
+          <div class="view-detail-item"><label>Stock</label><p id="viewStock">–</p></div>
+          <div class="view-detail-item full"><label>Description</label><p id="viewDesc">–</p></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal('viewModal')">Close</button>
+        <button class="btn-save" onclick="editFromView()">Edit Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       DELETE CONFIRM MODAL
+  ════════════════════════════════════ -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-box" style="max-width:420px">
+      <div class="modal-head">
+        <h2 class="modal-title">Confirm Delete</h2>
+        <button class="modal-close" onclick="closeModal('deleteModal')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align:center;padding:28px 24px;">
+        <div class="delete-modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </div>
+        <div class="delete-modal-title">Delete Product?</div>
+        <p class="delete-modal-sub">Are you sure you want to delete <strong id="deleteName"></strong>? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal('deleteModal')">Cancel</button>
+        <button class="btn-delete-confirm" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="toast">
+    <div class="toast-icon success" id="toastIcon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <span id="toastMsg">Product saved successfully!</span>
+  </div>
+
+  <script>
+    // ─── DATA ───────────────────────────────
+    const CATEGORY_EMOJIS = { electronics: '💻', fashion: '👕', sports: '⚽' };
+
+    let products = [
+      { id: 1, name: 'Canon Camera EOS 2000', price: 998, category: 'electronics', description: 'Professional DSLR camera with 10x optical zoom and 24MP sensor.', stock: 45, image: '' },
+      { id: 2, name: 'Nike Air Max 2024',     price: 149, category: 'sports',      description: 'Lightweight running shoes with responsive foam cushioning.', stock: 120, image: '' },
+      { id: 3, name: 'Slim Fit Cotton T-Shirt', price: 29, category: 'fashion',   description: 'Premium cotton slim-fit t-shirt available in multiple colours.', stock: 5,  image: '' },
+      { id: 4, name: 'Sony WH-1000XM5',       price: 349, category: 'electronics', description: 'Industry-leading noise cancelling wireless headphones.', stock: 0,  image: '' },
+      { id: 5, name: 'Adidas Running Shorts',  price: 49,  category: 'sports',     description: 'Breathable quick-dry shorts for high-intensity workouts.', stock: 78, image: '' },
+      { id: 6, name: 'Leather Biker Jacket',   price: 189, category: 'fashion',    description: 'Classic genuine leather jacket with zip pockets.', stock: 12, image: '' },
+    ];
+    let nextId = 7;
+    let editingId = null;
+    let deletingId = null;
+    let viewingId  = null;
+
+    // ─── RENDER ─────────────────────────────
+    function getStockBadge(stock) {
+      if (stock === 0)   return `<span class="stock-badge no-stock"><span class="stock-dot"></span>Out of stock</span>`;
+      if (stock <= 10)   return `<span class="stock-badge low-stock"><span class="stock-dot"></span>Low stock</span>`;
+      return `<span class="stock-badge in-stock"><span class="stock-dot"></span>In stock</span>`;
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('tableBody');
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:#bbb;">No products found.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = list.map(p => `
+        <tr>
+          <td><input type="checkbox" class="tbl-checkbox row-check" data-id="${p.id}" /></td>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb">
+                ${p.image ? `<img src="${p.image}" alt="${p.name}" />` : CATEGORY_EMOJIS[p.category] || '📦'}
+              </div>
+              <div>
+                <div class="product-cell-name" title="${p.name}">${p.name}</div>
+                <div class="product-cell-id">#PRD-${String(p.id).padStart(4,'0')}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="cat-badge ${p.category}">${p.category.charAt(0).toUpperCase()+p.category.slice(1)}</span></td>
+          <td><strong>$${Number(p.price).toFixed(2)}</strong></td>
+          <td>${p.stock}</td>
+          <td>${getStockBadge(p.stock)}</td>
+          <td>
+            <div class="row-actions">
+              <button class="row-btn view-btn-row" title="View" onclick="openView(${p.id})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button class="row-btn edit-btn-row" title="Edit" onclick="openEdit(${p.id})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+              <button class="row-btn delete-btn-row" title="Delete" onclick="openDelete(${p.id})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+      updateStats();
+    }
+
+    function updateStats() {
+      const total   = products.length;
+      const inStock  = products.filter(p => p.stock > 10).length;
+      const lowStock = products.filter(p => p.stock > 0 && p.stock <= 10).length;
+      const outStock = products.filter(p => p.stock === 0).length;
+      document.getElementById('statTotal').textContent    = total;
+      document.getElementById('statInStock').textContent  = inStock;
+      document.getElementById('statLowStock').textContent = lowStock;
+      document.getElementById('statOutStock').textContent = outStock;
+      document.getElementById('sidebarCount').textContent = total;
+      document.getElementById('tableCount').textContent   = `(${total} items)`;
+      document.getElementById('tableInfo').textContent    = `Showing 1–${total} of ${total} products`;
+    }
+
+    function filterProducts() {
+      const q   = (document.getElementById('tableSearch').value || document.getElementById('topbarSearch').value || '').toLowerCase();
+      const cat = document.getElementById('catFilter').value;
+      const filtered = products.filter(p =>
+        (!q   || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)) &&
+        (!cat || p.category === cat)
+      );
+      renderTable(filtered);
+      document.getElementById('tableInfo').textContent = `Showing 1–${filtered.length} of ${products.length} products`;
+    }
+
+    // ─── ADD ────────────────────────────────
+    function openAddModal() {
+      editingId = null;
+      document.getElementById('formModalTitle').textContent = 'Add New Product';
+      clearForm();
+      openModal('formModal');
+    }
+
+    // ─── EDIT ───────────────────────────────
+    function openEdit(id) {
+      editingId = id;
+      const p = products.find(x => x.id === id);
+      document.getElementById('formModalTitle').textContent = 'Edit Product';
+      document.getElementById('fieldName').value     = p.name;
+      document.getElementById('fieldPrice').value    = p.price;
+      document.getElementById('fieldCategory').value = p.category;
+      document.getElementById('fieldStock').value    = p.stock;
+      document.getElementById('fieldDesc').value     = p.description;
+      document.getElementById('fieldImage').value    = p.image || '';
+      const preview = document.getElementById('imgPreview');
+      if (p.image) { preview.src = p.image; preview.style.display = 'block'; }
+      else { preview.style.display = 'none'; }
+      clearErrors();
+      openModal('formModal');
+    }
+
+    // ─── SAVE ───────────────────────────────
+    function saveProduct() {
+      const name     = document.getElementById('fieldName').value.trim();
+      const price    = parseFloat(document.getElementById('fieldPrice').value);
+      const category = document.getElementById('fieldCategory').value;
+      const stock    = parseInt(document.getElementById('fieldStock').value);
+      const desc     = document.getElementById('fieldDesc').value.trim();
+      const image    = document.getElementById('fieldImage').value;
+
+      clearErrors();
+      let valid = true;
+      if (!name)               { showError('errName', 'fieldName');      valid = false; }
+      if (isNaN(price)||price<0){ showError('errPrice', 'fieldPrice');   valid = false; }
+      if (!category)           { showError('errCategory','fieldCategory'); valid = false; }
+      if (isNaN(stock)||stock<0){ showError('errStock', 'fieldStock');   valid = false; }
+      if (!valid) return;
+
+      if (editingId) {
+        const idx = products.findIndex(p => p.id === editingId);
+        products[idx] = { id: editingId, name, price, category, description: desc, stock, image };
+        showToast('Product updated successfully!', 'success');
+      } else {
+        products.unshift({ id: nextId++, name, price, category, description: desc, stock, image });
+        showToast('Product added successfully!', 'success');
+      }
+      closeModal('formModal');
+      renderTable(products);
+    }
+
+    // ─── VIEW ───────────────────────────────
+    function openView(id) {
+      viewingId = id;
+      const p = products.find(x => x.id === id);
+      document.getElementById('viewImg').innerHTML = p.image
+        ? `<img src="${p.image}" alt="${p.name}" />`
+        : `<span style="font-size:56px">${CATEGORY_EMOJIS[p.category]||'📦'}</span>`;
+      document.getElementById('viewName').textContent  = p.name;
+      document.getElementById('viewCat').innerHTML     = `<span class="cat-badge ${p.category}">${p.category.charAt(0).toUpperCase()+p.category.slice(1)}</span>`;
+      document.getElementById('viewPrice').textContent = `$${Number(p.price).toFixed(2)}`;
+      document.getElementById('viewStock').innerHTML   = `${p.stock} units &nbsp;${p.stock===0?'<span style="color:#e53935">●</span>':p.stock<=10?'<span style="color:#fb8c00">●</span>':'<span style="color:#43a047">●</span>'}`;
+      document.getElementById('viewDesc').textContent  = p.description || '—';
+      openModal('viewModal');
+    }
+    function editFromView() { closeModal('viewModal'); openEdit(viewingId); }
+
+    // ─── DELETE ─────────────────────────────
+    function openDelete(id) {
+      deletingId = id;
+      const p = products.find(x => x.id === id);
+      document.getElementById('deleteName').textContent = `"${p.name}"`;
+      openModal('deleteModal');
+    }
+    function confirmDelete() {
+      products = products.filter(p => p.id !== deletingId);
+      closeModal('deleteModal');
+      renderTable(products);
+      showToast('Product deleted.', 'error');
+    }
+
+    // ─── MODAL HELPERS ──────────────────────
+    function openModal(id)  { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    // Close modal on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(el => {
+      el.addEventListener('click', function(e) {
+        if (e.target === this) closeModal(this.id);
+      });
+    });
+
+    // ─── FORM HELPERS ───────────────────────
+    function clearForm() {
+      ['fieldName','fieldPrice','fieldCategory','fieldStock','fieldDesc','fieldImage'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('imgPreview').style.display = 'none';
+      clearErrors();
+    }
+    function clearErrors() {
+      ['errName','errPrice','errCategory','errStock'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+      ['fieldName','fieldPrice','fieldCategory','fieldStock'].forEach(id => {
+        document.getElementById(id).classList.remove('has-error');
+      });
+    }
+    function showError(errId, inputId) {
+      document.getElementById(errId).style.display = 'block';
+      document.getElementById(inputId).classList.add('has-error');
+    }
+
+    // ─── IMAGE PREVIEW ──────────────────────
+    function previewImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const preview = document.getElementById('imgPreview');
+        preview.src = ev.target.result;
+        preview.style.display = 'block';
+        document.getElementById('fieldImage').value = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('uploadArea').classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const preview = document.getElementById('imgPreview');
+        preview.src = ev.target.result;
+        preview.style.display = 'block';
+        document.getElementById('fieldImage').value = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ─── TOAST ──────────────────────────────
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon  = document.getElementById('toastIcon');
+      document.getElementById('toastMsg').textContent = msg;
+      icon.className = `toast-icon ${type}`;
+      icon.innerHTML = type === 'success'
+        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
+        : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ─── SIDEBAR TOGGLE ─────────────────────
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+      document.getElementById('adminMain').classList.toggle('expanded');
+    }
+
+    // ─── SELECT ALL ─────────────────────────
+    function toggleAll(cb) {
+      document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+    }
+
+    // ─── INIT ───────────────────────────────
+    renderTable(products);
+  </script>
+
+</body>
+</html>

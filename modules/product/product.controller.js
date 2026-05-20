@@ -12,17 +12,31 @@ export const getProduct = async (req, res) => {
     });
 
 };
+export const getProductId = async (req, res) => {
+
+    let {id} = req.params 
+    const product = await productModel.findById({_id:id});
+
+   res.render("ProductDetailsPage", {
+
+        product
+
+    });
+
+};
 export const addProduct = async (req, res) => {
 
-    const { name, price, category,description,stock } = req.body;
+    const { name, price, category,description,stock , image } = req.body;
 
     await productModel.create({
         name,
         price,
-        category
+        category,
+        image,
+        description
     });
 
-    res.redirect("/products");
+    res.redirect("/dashboard/admin");
 
 };
 
@@ -50,24 +64,11 @@ res.json({messsege:"Products", deletedProduct})
 
 }
 
-export const seedProduct = async (req, res) => {
 
-    const product = await productModel.create({
 
-        name: "iPhone 15",
+export const dashboardPage = async (req, res) => {
 
-        price: 1000,
+  const products = await productModel.find();
 
-        category: "electronics",
-
-        description: "Apple Phone",
-
-        stock: 20,
-
-        image: "assets\Image\tech\image 33.png"
-
-    });
-
-    res.json(product);
-
+  res.render("adminDashBoard", { products });
 };
