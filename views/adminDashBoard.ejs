@@ -329,7 +329,8 @@
                     <td>
                       <div class="row-actions">
 
-                        <button class="row-btn view-btn-row" onclick="openView('<%- JSON.stringify(p) %>')">
+                        <button class="row-btn view-btn-row"
+                          onclick="openView(JSON.parse(decodeURIComponent('<%- encodeURIComponent(JSON.stringify(p)) %>')))">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -338,17 +339,16 @@
 
 
                         </button>
-
-                        <button class="row-btn edit-btn-row" onclick="openEdit('<%- JSON.stringify(p) %>')">
+                        <button class="row-btn edit-btn-row" onclick="openEdit(JSON.parse(decodeURIComponent('<%- encodeURIComponent(JSON.stringify(p)) %>')))">
+                          <!-- أيقونة الـ SVG بتاعة القلم/التعديل -->
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
                           </svg>
-
                         </button>
 
-                        <button class="row-btn delete-btn-row" onclick="openDelete('<%= p._id %>')">
+                        <button class="row-btn delete-btn-row" onclick="openDelete('<%= p._id %>', '<%= p.name %>')">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <polyline points="3 6 5 6 21 6" />
@@ -356,7 +356,6 @@
                             <path d="M10 11v6M14 11v6" />
                             <path d="M9 6V4h6v2" />
                           </svg>
-
                         </button>
 
                       </div>
@@ -587,6 +586,7 @@
        CLIENT-SIDE JAVASCRIPT
   ════════════════════════════════════ -->
   <script>
+    const products = `<%- JSON.stringify(products) %>`;
     // ─── DATA FROM SERVER (مهم جداً) ─────────────
     // تمرير البيانات من الـ Server للـ Client بطريقة آمنة
     const CATEGORY_EMOJIS = { electronics: '🔌', fashion: '👕', sports: '⚽', default: '📦' };
@@ -598,7 +598,6 @@
 
     // ─── INIT ───────────────────────────────────
     document.addEventListener('DOMContentLoaded', function () {
-      renderTable(products);
       updateStats();
 
       // Setup form submit
@@ -681,33 +680,67 @@
     }
 
     // ─── EDIT PRODUCT ───────────────────────────
-    function openEdit(product) {
-      // استقبال المنتج كـ object كامل (آمن ضد XSS)
-      editingId = product._id;
 
-      document.getElementById('formModalTitle').textContent = 'Edit Product';
-      document.getElementById('productForm').action = `/dashboard/update-product/${product._id}?_method=PUT`;
-      document.getElementById('formMethod').value = 'PUT';
-      document.getElementById('productId').value = product._id;
+// 2️⃣ الدالة الأساسية: بتاخد الأوبجيكت وتفتح الـ Modal وتملى البيانات
+function openEdit(product) {
+console.log(product);
 
-      document.getElementById('fieldName').value = product.name || '';
-      document.getElementById('fieldPrice').value = product.price || '';
-      document.getElementById('fieldCategory').value = product.category || '';
-      document.getElementById('fieldStock').value = product.stock || '';
-      document.getElementById('fieldDesc').value = product.description || '';
-      document.getElementById('fieldImage').value = product.image || '';
+  document.getElementById(
+    "formModalTitle"
+  ).textContent = "Edit Product"
 
-      const preview = document.getElementById('imgPreview');
-      if (product.image) {
-        preview.src = '/uploads/' + product.image;
-        preview.style.display = 'block';
-      } else {
-        preview.style.display = 'none';
-      }
+  document.getElementById(
+    "productForm"
+  ).action =
+    `/dashboard/update-product/${product._id}?_method=PUT`
 
-      clearErrors();
-      openModal('formModal');
-    }
+  document.getElementById(
+    "productId"
+  ).value = product._id
+
+  document.getElementById(
+    "fieldName"
+  ).value = product.name
+
+  document.getElementById(
+    "fieldPrice"
+  ).value = product.price
+
+  document.getElementById(
+    "fieldCategory"
+  ).value = product.category
+
+  document.getElementById(
+    "fieldStock"
+  ).value = product.stock
+
+  document.getElementById(
+    "fieldDesc"
+  ).value = product.description || ""
+
+  document.getElementById(
+    "fieldImage"
+  ).value = product.image || ""
+
+  const preview =
+    document.getElementById("imgPreview")
+
+  if (product.image) {
+
+    preview.src =
+      `/uploads/${product.image}`
+
+    preview.style.display =
+      "block"
+
+  } else {
+
+    preview.style.display =
+      "none"
+  }
+
+  openModal("formModal")
+}
 
     // ─── SAVE PRODUCT (Client-side validation) ──
     function saveProduct() {
@@ -742,6 +775,7 @@
 
     // ─── VIEW PRODUCT ───────────────────────────
     function openView(product) {
+      console.log(product)
       viewingId = product._id;
 
       const imgContainer = document.getElementById('viewImg');
@@ -767,15 +801,35 @@
     }
 
     // ─── DELETE PRODUCT ─────────────────────────
-    function openDelete(product) {
-      deletingId = product._id;
-      document.getElementById('deleteName').textContent = `"${product.name}"`;
+    function openDelete(productId, productName) {
+
+      deletingId = productId;
+      console.log(deletingId);
+
+      document.getElementById('deleteName').textContent = `"${productName}"`;
       openModal('deleteModal');
     }
 
     function confirmDelete() {
-      // للتطبيق الفعلي: السيرفر هو اللي بيحذف، هنا مجرد توجيه
-      window.location.href = `/dashboard/delete-product/${deletingId}?_method=DELETE`;
+      if (!deletingId) return;
+
+      fetch(`/dashboard/delete-product/${deletingId}`, {
+        method: 'DELETE' // أو POST حسب السيرفر
+      })
+        .then(response => {
+          // لو السيرفر رجع نجاح (200) أو عمل redirect لصفحة تانية بنجاح
+          if (response.ok || response.redirected) {
+            closeModal('deleteModal');
+            window.location.reload(); // تحديث الصفحة عشان يختفي المنتج
+          } else {
+            alert('فشل حذف المنتج من السيرفر');
+          }
+        })
+        .catch(err => {
+          console.error('Error:', err);
+          // تلميح: ساعات الـ redirect بيسبب خطأ هنا بالرغم من الحذف، فممكن نحدث الصفحة برضه للتأكيد
+          window.location.reload();
+        });
     }
 
     // ─── FORM HELPERS ───────────────────────────

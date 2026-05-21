@@ -39,7 +39,7 @@ router.get("/", getProduct);                            // ✅ /dashboard/
 
 // ✅ Specific routes BEFORE /:id
 router.post("/add-product",upload.single('image'), addProduct);           // ✅ /dashboard/add-product
-router.put("/update-product/:id", upload.single('image'), updateProduct);  // ✅ /dashboard/update-product/:id
+router.post("/update-product/:id", upload.single('image'), updateProduct);  // ✅ /dashboard/update-product/:id
 router.delete("/delete-product/:id", deleteProduct);    // ✅ /dashboard/delete-product/:id
 
 // ✅ Generic route LAST (عشان مياخدش على الـ routes اللي فوق)

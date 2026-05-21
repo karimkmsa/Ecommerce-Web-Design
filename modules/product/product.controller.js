@@ -110,15 +110,13 @@ export const updateProduct = async (req, res) => {
 
 
 
-export const deleteProduct = async(req,res)=>{
-let {id} = req.params
-const deletedProduct = await productModel.deleteOne({_id:id})
+export const deleteProduct = async (req, res) => {
 
+  const { id } = req.params
 
-res.json({messsege:"Products", deletedProduct})
+  await productModel.findByIdAndDelete(id)
 
-
-
+  res.redirect("/dashboard/admin")
 }
 
 
