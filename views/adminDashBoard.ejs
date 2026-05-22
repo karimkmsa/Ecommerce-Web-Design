@@ -929,7 +929,71 @@ console.log(product);
     function toggleAll(cb) {
       document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
     }
-
+  // ─── SIDEBAR TOGGLE (Mobile Optimized) ────────────────
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const body = document.body;
+    
+    if (!sidebar) return;
+    
+    sidebar.classList.toggle('open');
+    
+    if (overlay) {
+      overlay.classList.toggle('open');
+    }
+    
+    // منع الـ scroll لما الـ sidebar مفتوح على الموبايل
+    if (window.innerWidth <= 1023) {
+      body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+    }
+  }
+  
+  // ─── Close sidebar when pressing Escape ───────────────
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar?.classList.contains('open')) {
+        toggleSidebar();
+      }
+    }
+  });
+  
+  // ─── Close sidebar when clicking a nav item (mobile) ─
+  document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+    item.addEventListener('click', function() {
+      if (window.innerWidth <= 1023) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar?.classList.contains('open')) {
+          toggleSidebar();
+        }
+      }
+    });
+  });
+  
+  // ─── Handle window resize ────────────────────────────
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const body = document.body;
+      
+      // لو رجعنا للديسكتوب، نقفل الـ sidebar ونظف الـ styles
+      if (window.innerWidth > 1023) {
+        if (sidebar) {
+          sidebar.classList.remove('open');
+          sidebar.classList.remove('collapsed');
+        }
+        if (overlay) overlay.classList.remove('open');
+        body.style.overflow = '';
+      }
+    }, 250);
+  });
+  
+  // ─── Rest of your existing JS (filterProducts, modals, etc.) ───
+  // ... (خلي باقي الكود القديم زي ما هو) ...
   </script>
 
 </body>
