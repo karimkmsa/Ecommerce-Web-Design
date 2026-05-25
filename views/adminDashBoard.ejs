@@ -92,14 +92,6 @@
         <span>Products</span>
       </div>
       <div class="topbar-right">
-        <div class="topbar-search-wrap">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input type="text" placeholder="Search…" id="topbarSearch" oninput="filterProducts()" />
-        </div>
-
         <button class="topbar-icon-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <circle cx="12" cy="8" r="4" />
@@ -197,24 +189,9 @@
             <div class="table-title">Products <span id="tableCount">(0 items)</span></div>
           </div>
           <div class="table-actions">
-            <div class="tbl-search-wrap">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input type="text" placeholder="Search products…" id="tableSearch" oninput="filterProducts()" />
-            </div>
-            <select class="tbl-filter-select" id="catFilter" onchange="filterProducts()">
-              <option value="">All Categories</option>
-              <option value="electronics">Electronics</option>
-              <option value="fashion">Fashion</option>
-              <option value="sports">Sports</option>
-            </select>
+    
+
             <button class="btn-add-product" onclick="openAddModal()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
               Add Product
             </button>
           </div>
@@ -339,7 +316,8 @@
 
 
                         </button>
-                        <button class="row-btn edit-btn-row" onclick="openEdit(JSON.parse(decodeURIComponent('<%- encodeURIComponent(JSON.stringify(p)) %>')))">
+                        <button class="row-btn edit-btn-row"
+                          onclick="openEdit(JSON.parse(decodeURIComponent('<%- encodeURIComponent(JSON.stringify(p)) %>')))">
                           <!-- أيقونة الـ SVG بتاعة القلم/التعديل -->
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -370,631 +348,654 @@
 
         <!-- Pagination -->
         <div class="table-footer">
-          <div class="table-info" id="tableInfo">Showing 0 of 0 products</div>
-          <div class="table-pages">
-            <button class="tbl-page-btn" disabled>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <button class="tbl-page-btn active">1</button>
-            <button class="tbl-page-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
+
+          <div class="table-info" id="tableInfo">
+
+            Showing page <%= currentPage %> of <%= totalPages %>
+
           </div>
+
+
+          <div class="table-pages">
+
+            <% if(currentPage> 1){ %>
+
+              <a href="?page=<%= currentPage - 1 %>">
+
+                <button class="tbl-page-btn">
+
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+
+                </button>
+
+              </a>
+
+              <% } %>
+
+
+                <% for(let i=1; i <=totalPages; i++){ %>
+
+                  <a href="?page=<%= i %>">
+
+                    <button class="tbl-page-btn <%= currentPage === i ? 'active' : '' %>">
+
+                      <%= i %>
+
+                    </button>
+
+                  </a>
+
+                  <% } %>
+
+
+                    <% if(currentPage < totalPages){ %>
+
+                      <a href="?page=<%= currentPage + 1 %>">
+
+                        <button class="tbl-page-btn">
+
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+
+                        </button>
+
+                      </a>
+
+                      <% } %>
+
+          </div>
+
         </div>
-      </div>
 
-    </div><!-- /admin-content -->
-  </div><!-- /admin-main -->
-
-
-  <!-- ════════════════════════════════
+        <!-- ════════════════════════════════
      ADD / EDIT MODAL
 ════════════════════════════════ -->
-  <div class="modal-overlay" id="formModal">
-    <div class="modal-box">
-      <!-- Header -->
-      <div class="modal-head">
-        <h2 class="modal-title" id="formModalTitle">Add New Product</h2>
-        <button type="button" class="modal-close" onclick="closeModal('formModal')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-
-      <!-- FORM -->
-      <form id="productForm" action="/dashboard/add-product" method="POST" enctype="multipart/form-data">
-
-        <!-- hidden id for edit -->
-        <input type="hidden" name="_id" id="productId" />
-        <input type="hidden" name="_method" id="formMethod" />
-
-        <div class="modal-body">
-          <!-- Image Upload -->
-          <div class="modal-field">
-            <label>Product Image</label>
-            <div class="img-upload-area" id="uploadArea" onclick="document.getElementById('imgFile').click()"
-              ondragover="event.preventDefault();this.classList.add('dragover')"
-              ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
-              <input type="file" id="imgFile" name="image" accept="image/*" onchange="previewImage(event)" />
-              <div class="img-upload-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <polyline points="21 15 16 10 5 21" />
+        <div class="modal-overlay" id="formModal">
+          <div class="modal-box">
+            <!-- Header -->
+            <div class="modal-head">
+              <h2 class="modal-title" id="formModalTitle">Add New Product</h2>
+              <button type="button" class="modal-close" onclick="closeModal('formModal')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
+              </button>
+            </div>
+
+            <!-- FORM -->
+            <form id="productForm" action="/dashboard/add-product" method="POST" enctype="multipart/form-data">
+
+              <!-- hidden id for edit -->
+              <input type="hidden" name="_id" id="productId" />
+              <input type="hidden" name="_method" id="formMethod" />
+
+              <div class="modal-body">
+                <!-- Image Upload -->
+                <div class="modal-field">
+                  <label>Product Image</label>
+                  <div class="img-upload-area" id="uploadArea" onclick="document.getElementById('imgFile').click()"
+                    ondragover="event.preventDefault();this.classList.add('dragover')"
+                    ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
+                    <input type="file" id="imgFile" name="image" accept="image/*" onchange="previewImage(event)" />
+                    <div class="img-upload-icon">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                      </svg>
+                    </div>
+                    <p class="img-upload-text"><span>Click to upload</span> or drag & drop</p>
+                    <p class="img-upload-text" style="font-size:11px;color:#bbb;margin-top:4px;">PNG, JPG, GIF up to
+                      10MB</p>
+                    <img id="imgPreview" class="img-preview" alt="Preview" style="display:none;" />
+                  </div>
+                  <!-- image url fallback -->
+                  <input type="text" name="imageUrl" id="fieldImage" class="modal-input"
+                    placeholder="Or paste image URL" style="margin-top:10px;" />
+                </div>
+
+                <!-- Product Name -->
+                <div class="modal-field">
+                  <label for="fieldName">Product Name <span>*</span></label>
+                  <input type="text" id="fieldName" name="name" class="modal-input"
+                    placeholder="e.g. Nike Air Max 2024" />
+                  <span class="auth-error-msg" id="errName" style="display:none;color:#e53935;font-size:12px;">Product
+                    name is
+                    required.</span>
+                </div>
+
+                <!-- Price + Category -->
+                <div class="modal-field-row">
+                  <div class="modal-field">
+                    <label for="fieldPrice">Price (USD) <span>*</span></label>
+                    <input type="number" id="fieldPrice" name="price" class="modal-input" placeholder="0.00" min="0"
+                      step="0.01" />
+                    <span class="auth-error-msg" id="errPrice" style="display:none;color:#e53935;font-size:12px;">Enter
+                      a
+                      valid price.</span>
+                  </div>
+                  <div class="modal-field">
+                    <label for="fieldCategory">Category <span>*</span></label>
+                    <select id="fieldCategory" name="category" class="modal-select">
+                      <option value="">Select category</option>
+                      <option value="electronics">Electronics</option>
+                      <option value="fashion">Fashion</option>
+                      <option value="sports">Sports</option>
+                    </select>
+                    <span class="auth-error-msg" id="errCategory"
+                      style="display:none;color:#e53935;font-size:12px;">Select a
+                      category.</span>
+                  </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="modal-field">
+                  <label for="fieldStock">Stock Quantity <span>*</span></label>
+                  <input type="number" id="fieldStock" name="stock" class="modal-input" placeholder="0" min="0" />
+                  <span class="auth-error-msg" id="errStock" style="display:none;color:#e53935;font-size:12px;">Enter a
+                    valid
+                    stock quantity.</span>
+                </div>
+
+                <!-- Description -->
+                <div class="modal-field">
+                  <label for="fieldDesc">Description</label>
+                  <textarea id="fieldDesc" name="description" class="modal-textarea"
+                    placeholder="Describe the product…"></textarea>
+                </div>
               </div>
-              <p class="img-upload-text"><span>Click to upload</span> or drag & drop</p>
-              <p class="img-upload-text" style="font-size:11px;color:#bbb;margin-top:4px;">PNG, JPG, GIF up to 10MB</p>
-              <img id="imgPreview" class="img-preview" alt="Preview" style="display:none;" />
-            </div>
-            <!-- image url fallback -->
-            <input type="text" name="imageUrl" id="fieldImage" class="modal-input" placeholder="Or paste image URL"
-              style="margin-top:10px;" />
-          </div>
 
-          <!-- Product Name -->
-          <div class="modal-field">
-            <label for="fieldName">Product Name <span>*</span></label>
-            <input type="text" id="fieldName" name="name" class="modal-input" placeholder="e.g. Nike Air Max 2024" />
-            <span class="auth-error-msg" id="errName" style="display:none;color:#e53935;font-size:12px;">Product name is
-              required.</span>
-          </div>
-
-          <!-- Price + Category -->
-          <div class="modal-field-row">
-            <div class="modal-field">
-              <label for="fieldPrice">Price (USD) <span>*</span></label>
-              <input type="number" id="fieldPrice" name="price" class="modal-input" placeholder="0.00" min="0"
-                step="0.01" />
-              <span class="auth-error-msg" id="errPrice" style="display:none;color:#e53935;font-size:12px;">Enter a
-                valid price.</span>
-            </div>
-            <div class="modal-field">
-              <label for="fieldCategory">Category <span>*</span></label>
-              <select id="fieldCategory" name="category" class="modal-select">
-                <option value="">Select category</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="sports">Sports</option>
-              </select>
-              <span class="auth-error-msg" id="errCategory" style="display:none;color:#e53935;font-size:12px;">Select a
-                category.</span>
-            </div>
-          </div>
-
-          <!-- Stock -->
-          <div class="modal-field">
-            <label for="fieldStock">Stock Quantity <span>*</span></label>
-            <input type="number" id="fieldStock" name="stock" class="modal-input" placeholder="0" min="0" />
-            <span class="auth-error-msg" id="errStock" style="display:none;color:#e53935;font-size:12px;">Enter a valid
-              stock quantity.</span>
-          </div>
-
-          <!-- Description -->
-          <div class="modal-field">
-            <label for="fieldDesc">Description</label>
-            <textarea id="fieldDesc" name="description" class="modal-textarea"
-              placeholder="Describe the product…"></textarea>
+              <!-- Footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn-cancel" onclick="closeModal('formModal')">Cancel</button>
+                <button type="submit" class="btn-save">Save Product</button>
+              </div>
+            </form>
           </div>
         </div>
 
-        <!-- Footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn-cancel" onclick="closeModal('formModal')">Cancel</button>
-          <button type="submit" class="btn-save">Save Product</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-
-  <!-- ════════════════════════════════
+        <!-- ════════════════════════════════
        VIEW MODAL
   ════════════════════════════════════ -->
-  <div class="modal-overlay" id="viewModal">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h2 class="modal-title">Product Details</h2>
-        <button class="modal-close" onclick="closeModal('viewModal')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="view-modal-img" id="viewImg"></div>
-        <div class="view-detail-grid">
-          <div class="view-detail-item"><label>Product Name</label>
-            <p id="viewName">–</p>
-          </div>
-          <div class="view-detail-item"><label>Category</label>
-            <p id="viewCat">–</p>
-          </div>
-          <div class="view-detail-item"><label>Price</label>
-            <p id="viewPrice">–</p>
-          </div>
-          <div class="view-detail-item"><label>Stock</label>
-            <p id="viewStock">–</p>
-          </div>
-          <div class="view-detail-item full"><label>Description</label>
-            <p id="viewDesc">–</p>
+        <div class="modal-overlay" id="viewModal">
+          <div class="modal-box">
+            <div class="modal-head">
+              <h2 class="modal-title">Product Details</h2>
+              <button class="modal-close" onclick="closeModal('viewModal')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="view-modal-img" id="viewImg"></div>
+              <div class="view-detail-grid">
+                <div class="view-detail-item"><label>Product Name</label>
+                  <p id="viewName">–</p>
+                </div>
+                <div class="view-detail-item"><label>Category</label>
+                  <p id="viewCat">–</p>
+                </div>
+                <div class="view-detail-item"><label>Price</label>
+                  <p id="viewPrice">–</p>
+                </div>
+                <div class="view-detail-item"><label>Stock</label>
+                  <p id="viewStock">–</p>
+                </div>
+                <div class="view-detail-item full"><label>Description</label>
+                  <p id="viewDesc">–</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-cancel" onclick="closeModal('viewModal')">Close</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeModal('viewModal')">Close</button>
-        <button class="btn-save" onclick="editFromView()">Edit Product</button>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- ════════════════════════════════
+        <!-- ════════════════════════════════
        DELETE CONFIRM MODAL
   ════════════════════════════════════ -->
-  <div class="modal-overlay" id="deleteModal">
-    <div class="modal-box" style="max-width:420px">
-      <div class="modal-head">
-        <h2 class="modal-title">Confirm Delete</h2>
-        <button class="modal-close" onclick="closeModal('deleteModal')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align:center;padding:28px 24px;">
-        <div class="delete-modal-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 6 5 6 21 6" />
-            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
-            <path d="M10 11v6M14 11v6" />
-            <path d="M9 6V4h6v2" />
-          </svg>
+        <div class="modal-overlay" id="deleteModal">
+          <div class="modal-box" style="max-width:420px">
+            <div class="modal-head">
+              <h2 class="modal-title">Confirm Delete</h2>
+              <button class="modal-close" onclick="closeModal('deleteModal')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+            <div class="modal-body" style="text-align:center;padding:28px 24px;">
+              <div class="delete-modal-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+                  <path d="M10 11v6M14 11v6" />
+                  <path d="M9 6V4h6v2" />
+                </svg>
+              </div>
+              <div class="delete-modal-title">Delete Product?</div>
+              <p class="delete-modal-sub">Are you sure you want to delete <strong id="deleteName"></strong>? This action
+                cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-cancel" onclick="closeModal('deleteModal')">Cancel</button>
+              <button class="btn-delete-confirm" onclick="confirmDelete()">Yes, Delete</button>
+            </div>
+          </div>
         </div>
-        <div class="delete-modal-title">Delete Product?</div>
-        <p class="delete-modal-sub">Are you sure you want to delete <strong id="deleteName"></strong>? This action
-          cannot be undone.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeModal('deleteModal')">Cancel</button>
-        <button class="btn-delete-confirm" onclick="confirmDelete()">Yes, Delete</button>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- Toast -->
-  <div class="admin-toast" id="toast">
-    <div class="toast-icon success" id="toastIcon">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-    </div>
-    <span id="toastMsg">Product saved successfully!</span>
-  </div>
+        <!-- Toast -->
+        <div class="admin-toast" id="toast">
+          <div class="toast-icon success" id="toastIcon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span id="toastMsg">Product saved successfully!</span>
+        </div>
 
 
-  <!-- ════════════════════════════════
+        <!-- ════════════════════════════════
        CLIENT-SIDE JAVASCRIPT
   ════════════════════════════════════ -->
-  <script>
-    const products = `<%- JSON.stringify(products) %>`;
-    // ─── DATA FROM SERVER (مهم جداً) ─────────────
-    // تمرير البيانات من الـ Server للـ Client بطريقة آمنة
-    const CATEGORY_EMOJIS = { electronics: '🔌', fashion: '👕', sports: '⚽', default: '📦' };
+        <script>
+          const products = `<%- JSON.stringify(products) %>`;
+          // ─── DATA FROM SERVER (مهم جداً) ─────────────
+          // تمرير البيانات من الـ Server للـ Client بطريقة آمنة
+          const CATEGORY_EMOJIS = { electronics: '🔌', fashion: '👕', sports: '⚽', default: '📦' };
 
-    // متغيرات عامة
-    let editingId = null;
-    let viewingId = null;
-    let deletingId = null;
+          // متغيرات عامة
+          let editingId = null;
+          let viewingId = null;
+          let deletingId = null;
 
-    // ─── INIT ───────────────────────────────────
-    document.addEventListener('DOMContentLoaded', function () {
-      updateStats();
+          // ─── INIT ───────────────────────────────────
+          document.addEventListener('DOMContentLoaded', function () {
+            updateStats();
 
-      // Setup form submit
-      document.getElementById('productForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        saveProduct();
-      });
-    });
+            // Setup form submit
+            document.getElementById('productForm').addEventListener('submit', function (e) {
+              e.preventDefault();
+              saveProduct();
+            });
+          });
 
-    // ─── RENDER TABLE ───────────────────────────
-    function getStockBadge(stock) {
-      if (stock === 0) return `<span class="stock-badge no-stock"><span class="stock-dot"></span>Out of stock</span>`;
-      if (stock <= 10) return `<span class="stock-badge low-stock"><span class="stock-dot"></span>Low stock</span>`;
-      return `<span class="stock-badge in-stock"><span class="stock-dot"></span>In stock</span>`;
-    }
-
-
-    // ─── UPDATE STATS ───────────────────────────
-    function updateStats() {
-      const total = products.length;
-      const inStock = products.filter(p => p.stock > 10).length;
-      const lowStock = products.filter(p => p.stock > 0 && p.stock <= 10).length;
-      const outStock = products.filter(p => p.stock === 0).length;
-
-      document.getElementById('statTotal').textContent = total;
-      document.getElementById('statInStock').textContent = inStock;
-      document.getElementById('statLowStock').textContent = lowStock;
-      document.getElementById('statOutStock').textContent = outStock;
-      document.getElementById('sidebarCount').textContent = total;
-      document.getElementById('tableCount').textContent = `(${total} items)`;
-      document.getElementById('tableInfo').textContent = `Showing 1–${total} of ${total} products`;
-    }
-
-    // ─── FILTER / SEARCH ────────────────────────
-    function filterProducts() {
-      const tableSearch = document.getElementById('tableSearch');
-      const topbarSearch = document.getElementById('topbarSearch');
-      const catFilter = document.getElementById('catFilter');
-
-      const q = ((tableSearch?.value || '') + (topbarSearch?.value || '')).toLowerCase().trim();
-      const cat = catFilter?.value || '';
-
-      const filtered = products.filter(p => {
-        const matchSearch = !q || p.name.toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q);
-        const matchCat = !cat || p.category === cat;
-        return matchSearch && matchCat;
-      });
-
-      renderTable(filtered);
-      document.getElementById('tableInfo').textContent = `Showing 1–${filtered.length} of ${products.length} products`;
-    }
-
-    // ─── MODAL HELPERS ──────────────────────────
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) modal.classList.add('open');
-    }
-
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) modal.classList.remove('open');
-    }
-
-    // Close modal on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(el => {
-      el.addEventListener('click', function (e) {
-        if (e.target === this) closeModal(this.id);
-      });
-    });
-
-    // ─── ADD PRODUCT ────────────────────────────
-    function openAddModal() {
-      editingId = null;
-      document.getElementById('formModalTitle').textContent = 'Add New Product';
-      document.getElementById('productForm').action = '/dashboard/add-product';
-      document.getElementById('formMethod').value = '';
-      document.getElementById('productId').value = '';
-      clearForm();
-      openModal('formModal');
-    }
-
-    // ─── EDIT PRODUCT ───────────────────────────
-
-// 2️⃣ الدالة الأساسية: بتاخد الأوبجيكت وتفتح الـ Modal وتملى البيانات
-function openEdit(product) {
-console.log(product);
-
-  document.getElementById(
-    "formModalTitle"
-  ).textContent = "Edit Product"
-
-  document.getElementById(
-    "productForm"
-  ).action =
-    `/dashboard/update-product/${product._id}?_method=PUT`
-
-  document.getElementById(
-    "productId"
-  ).value = product._id
-
-  document.getElementById(
-    "fieldName"
-  ).value = product.name
-
-  document.getElementById(
-    "fieldPrice"
-  ).value = product.price
-
-  document.getElementById(
-    "fieldCategory"
-  ).value = product.category
-
-  document.getElementById(
-    "fieldStock"
-  ).value = product.stock
-
-  document.getElementById(
-    "fieldDesc"
-  ).value = product.description || ""
-
-  document.getElementById(
-    "fieldImage"
-  ).value = product.image || ""
-
-  const preview =
-    document.getElementById("imgPreview")
-
-  if (product.image) {
-
-    preview.src =
-      `/uploads/${product.image}`
-
-    preview.style.display =
-      "block"
-
-  } else {
-
-    preview.style.display =
-      "none"
-  }
-
-  openModal("formModal")
-}
-
-    // ─── SAVE PRODUCT (Client-side validation) ──
-    function saveProduct() {
-      const name = document.getElementById('fieldName').value.trim();
-      const price = parseFloat(document.getElementById('fieldPrice').value);
-      const category = document.getElementById('fieldCategory').value;
-      const stock = parseInt(document.getElementById('fieldStock').value);
-      const desc = document.getElementById('fieldDesc').value.trim();
-      const imageInput = document.getElementById('imgFile');
-      const imageUrl = document.getElementById('fieldImage').value;
-
-      clearErrors();
-      let valid = true;
-
-      if (!name) { showError('errName', 'fieldName'); valid = false; }
-      if (isNaN(price) || price < 0) { showError('errPrice', 'fieldPrice'); valid = false; }
-      if (!category) { showError('errCategory', 'fieldCategory'); valid = false; }
-      if (isNaN(stock) || stock < 0) { showError('errStock', 'fieldStock'); valid = false; }
-
-      if (!valid) return;
-
-      // ملاحظة: هنا المفروض تبعت الفورم للسيرفر
-      // هذا الكود مجرد مثال للـ client-side validation
-      // للتطبيق الفعلي، اترك الـ form submit يعمل عادي أو استخدم fetch مع FormData
-
-      showToast(editingId ? 'Product updated successfully!' : 'Product added successfully!', 'success');
-      closeModal('formModal');
-
-      // إعادة تحميل الصفحة عشان تشوف التغييرات من الـ server
-      setTimeout(() => location.reload(), 1000);
-    }
-
-    // ─── VIEW PRODUCT ───────────────────────────
-    function openView(product) {
-      console.log(product)
-      viewingId = product._id;
-
-      const imgContainer = document.getElementById('viewImg');
-      if (product.image) {
-        imgContainer.innerHTML = `<img src="/uploads/${product.image}" alt="${product.name}" style="width:100%;border-radius:14px;" />`;
-      } else {
-        imgContainer.innerHTML = `<span style="font-size:56px;display:block;text-align:center;padding:20px;">${CATEGORY_EMOJIS[product.category] || CATEGORY_EMOJIS.default}</span>`;
-      }
-
-      document.getElementById('viewName').textContent = product.name;
-      document.getElementById('viewCat').innerHTML = `<span class="cat-badge ${product.category}">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</span>`;
-      document.getElementById('viewPrice').textContent = `$${Number(product.price).toFixed(2)}`;
-      document.getElementById('viewStock').textContent = `${product.stock} units`;
-      document.getElementById('viewDesc').textContent = product.description || '—';
-
-      openModal('viewModal');
-    }
-
-    function editFromView() {
-      closeModal('viewModal');
-      const p = products.find(x => x._id === viewingId);
-      if (p) openEdit(p);
-    }
-
-    // ─── DELETE PRODUCT ─────────────────────────
-    function openDelete(productId, productName) {
-
-      deletingId = productId;
-      console.log(deletingId);
-
-      document.getElementById('deleteName').textContent = `"${productName}"`;
-      openModal('deleteModal');
-    }
-
-    function confirmDelete() {
-      if (!deletingId) return;
-
-      fetch(`/dashboard/delete-product/${deletingId}`, {
-        method: 'DELETE' // أو POST حسب السيرفر
-      })
-        .then(response => {
-          // لو السيرفر رجع نجاح (200) أو عمل redirect لصفحة تانية بنجاح
-          if (response.ok || response.redirected) {
-            closeModal('deleteModal');
-            window.location.reload(); // تحديث الصفحة عشان يختفي المنتج
-          } else {
-            alert('فشل حذف المنتج من السيرفر');
+          // ─── RENDER TABLE ───────────────────────────
+          function getStockBadge(stock) {
+            if (stock === 0) return `<span class="stock-badge no-stock"><span class="stock-dot"></span>Out of stock</span>`;
+            if (stock <= 10) return `<span class="stock-badge low-stock"><span class="stock-dot"></span>Low stock</span>`;
+            return `<span class="stock-badge in-stock"><span class="stock-dot"></span>In stock</span>`;
           }
-        })
-        .catch(err => {
-          console.error('Error:', err);
-          // تلميح: ساعات الـ redirect بيسبب خطأ هنا بالرغم من الحذف، فممكن نحدث الصفحة برضه للتأكيد
-          window.location.reload();
-        });
-    }
 
-    // ─── FORM HELPERS ───────────────────────────
-    function clearForm() {
-      ['fieldName', 'fieldPrice', 'fieldCategory', 'fieldStock', 'fieldDesc', 'fieldImage'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = '';
-      });
-      const fileInput = document.getElementById('imgFile');
-      if (fileInput) fileInput.value = '';
-      const preview = document.getElementById('imgPreview');
-      if (preview) preview.style.display = 'none';
-      clearErrors();
-    }
 
-    function clearErrors() {
-      ['errName', 'errPrice', 'errCategory', 'errStock'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-      });
-      ['fieldName', 'fieldPrice', 'fieldCategory', 'fieldStock'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove('has-error');
-      });
-    }
+          // ─── UPDATE STATS ───────────────────────────
+          function updateStats() {
+            const total = products.length;
+            const inStock = products.filter(p => p.stock > 10).length;
+            const lowStock = products.filter(p => p.stock > 0 && p.stock <= 10).length;
+            const outStock = products.filter(p => p.stock === 0).length;
 
-    function showError(errId, inputId) {
-      const errEl = document.getElementById(errId);
-      const inputEl = document.getElementById(inputId);
-      if (errEl) errEl.style.display = 'block';
-      if (inputEl) inputEl.classList.add('has-error');
-    }
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statInStock').textContent = inStock;
+            document.getElementById('statLowStock').textContent = lowStock;
+            document.getElementById('statOutStock').textContent = outStock;
+            document.getElementById('sidebarCount').textContent = total;
+            document.getElementById('tableCount').textContent = `(${total} items)`;
+            document.getElementById('tableInfo').textContent = `Showing 1–${total} of ${total} products`;
+          }
 
-    // ─── IMAGE PREVIEW ──────────────────────────
-    function previewImage(e) {
-      const file = e.target.files[0];
-      if (!file) return;
+          // ─── MODAL HELPERS ──────────────────────────
+          function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.add('open');
+          }
 
-      // عرض معاينة محلية فقط
-      const reader = new FileReader();
-      reader.onload = function (ev) {
-        const preview = document.getElementById('imgPreview');
-        if (preview) {
-          preview.src = ev.target.result;
-          preview.style.display = 'block';
-        }
-      };
-      reader.readAsDataURL(file);
+          function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.remove('open');
+          }
 
-      // ملاحظة: الـ file هيتبعت للسيرفر عبر form submit العادي
-      // مش محتاجين نعمل حاجة إضافية هنا
-    }
+          // Close modal on overlay click
+          document.querySelectorAll('.modal-overlay').forEach(el => {
+            el.addEventListener('click', function (e) {
+              if (e.target === this) closeModal(this.id);
+            });
+          });
 
-    function handleDrop(e) {
-      e.preventDefault();
-      const area = document.getElementById('uploadArea');
-      if (area) area.classList.remove('dragover');
+          // ─── ADD PRODUCT ────────────────────────────
+          function openAddModal() {
+            editingId = null;
+            document.getElementById('formModalTitle').textContent = 'Add New Product';
+            document.getElementById('productForm').action = '/dashboard/add-product';
+            document.getElementById('formMethod').value = '';
+            document.getElementById('productId').value = '';
+            clearForm();
+            openModal('formModal');
+          }
 
-      const file = e.dataTransfer.files[0];
-      if (!file) return;
+          // ─── EDIT PRODUCT ───────────────────────────
 
-      // تعيين الملف في الـ input
-      const fileInput = document.getElementById('imgFile');
-      if (fileInput) {
-        fileInput.files = e.dataTransfer.files;
-        previewImage({ target: fileInput });
-      }
-    }
+          // 2️⃣ الدالة الأساسية: بتاخد الأوبجيكت وتفتح الـ Modal وتملى البيانات
+          function openEdit(product) {
+            console.log(product);
 
-    // ─── TOAST NOTIFICATION ─────────────────────
-    function showToast(msg, type = 'success') {
-      const toast = document.getElementById('toast');
-      const icon = document.getElementById('toastIcon');
-      const msgEl = document.getElementById('toastMsg');
+            document.getElementById(
+              "formModalTitle"
+            ).textContent = "Edit Product"
 
-      if (!toast || !icon || !msgEl) return;
+            document.getElementById(
+              "productForm"
+            ).action =
+              `/dashboard/update-product/${product._id}?_method=PUT`
 
-      msgEl.textContent = msg;
-      icon.className = `toast-icon ${type}`;
-      icon.innerHTML = type === 'success'
-        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
-        : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>`;
+            document.getElementById(
+              "productId"
+            ).value = product._id
 
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
+            document.getElementById(
+              "fieldName"
+            ).value = product.name
 
-    // ─── SIDEBAR TOGGLE ─────────────────────────
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const main = document.getElementById('adminMain');
-      if (sidebar) sidebar.classList.toggle('collapsed');
-      if (main) main.classList.toggle('expanded');
-    }
+            document.getElementById(
+              "fieldPrice"
+            ).value = product.price
 
-    // ─── SELECT ALL CHECKBOX ────────────────────
-    function toggleAll(cb) {
-      document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
-    }
-  // ─── SIDEBAR TOGGLE (Mobile Optimized) ────────────────
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const body = document.body;
-    
-    if (!sidebar) return;
-    
-    sidebar.classList.toggle('open');
-    
-    if (overlay) {
-      overlay.classList.toggle('open');
-    }
-    
-    // منع الـ scroll لما الـ sidebar مفتوح على الموبايل
-    if (window.innerWidth <= 1023) {
-      body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
-    }
-  }
-  
-  // ─── Close sidebar when pressing Escape ───────────────
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar?.classList.contains('open')) {
-        toggleSidebar();
-      }
-    }
-  });
-  
-  // ─── Close sidebar when clicking a nav item (mobile) ─
-  document.querySelectorAll('.sidebar-nav-item').forEach(item => {
-    item.addEventListener('click', function() {
-      if (window.innerWidth <= 1023) {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar?.classList.contains('open')) {
-          toggleSidebar();
-        }
-      }
-    });
-  });
-  
-  // ─── Handle window resize ────────────────────────────
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebarOverlay');
-      const body = document.body;
-      
-      // لو رجعنا للديسكتوب، نقفل الـ sidebar ونظف الـ styles
-      if (window.innerWidth > 1023) {
-        if (sidebar) {
-          sidebar.classList.remove('open');
-          sidebar.classList.remove('collapsed');
-        }
-        if (overlay) overlay.classList.remove('open');
-        body.style.overflow = '';
-      }
-    }, 250);
-  });
-  
-  // ─── Rest of your existing JS (filterProducts, modals, etc.) ───
-  // ... (خلي باقي الكود القديم زي ما هو) ...
-  </script>
+            document.getElementById(
+              "fieldCategory"
+            ).value = product.category
+
+            document.getElementById(
+              "fieldStock"
+            ).value = product.stock
+
+            document.getElementById(
+              "fieldDesc"
+            ).value = product.description || ""
+
+            document.getElementById(
+              "fieldImage"
+            ).value = product.image || ""
+
+            const preview =
+              document.getElementById("imgPreview")
+
+            if (product.image) {
+
+              preview.src =
+                `/uploads/${product.image}`
+
+              preview.style.display =
+                "block"
+
+            } else {
+
+              preview.style.display =
+                "none"
+            }
+
+            openModal("formModal")
+          }
+
+          // ─── SAVE PRODUCT (Client-side validation) ──
+          function saveProduct() {
+            const name = document.getElementById('fieldName').value.trim();
+            const price = parseFloat(document.getElementById('fieldPrice').value);
+            const category = document.getElementById('fieldCategory').value;
+            const stock = parseInt(document.getElementById('fieldStock').value);
+            const desc = document.getElementById('fieldDesc').value.trim();
+            const imageInput = document.getElementById('imgFile');
+            const imageUrl = document.getElementById('fieldImage').value;
+
+            clearErrors();
+            let valid = true;
+
+            if (!name) { showError('errName', 'fieldName'); valid = false; }
+            if (isNaN(price) || price < 0) { showError('errPrice', 'fieldPrice'); valid = false; }
+            if (!category) { showError('errCategory', 'fieldCategory'); valid = false; }
+            if (isNaN(stock) || stock < 0) { showError('errStock', 'fieldStock'); valid = false; }
+
+            if (!valid) return;
+
+            // ملاحظة: هنا المفروض تبعت الفورم للسيرفر
+            // هذا الكود مجرد مثال للـ client-side validation
+            // للتطبيق الفعلي، اترك الـ form submit يعمل عادي أو استخدم fetch مع FormData
+
+            showToast(editingId ? 'Product updated successfully!' : 'Product added successfully!', 'success');
+            closeModal('formModal');
+
+            // إعادة تحميل الصفحة عشان تشوف التغييرات من الـ server
+            setTimeout(() => location.reload(), 1000);
+          }
+
+          // ─── VIEW PRODUCT ───────────────────────────
+          function openView(product) {
+            console.log(product)
+            viewingId = product._id;
+
+            const imgContainer = document.getElementById('viewImg');
+            if (product.image) {
+              imgContainer.innerHTML = `<img src="/uploads/${product.image}" alt="${product.name}" style="width:100%;border-radius:14px;" />`;
+            } else {
+              imgContainer.innerHTML = `<span style="font-size:56px;display:block;text-align:center;padding:20px;">${CATEGORY_EMOJIS[product.category] || CATEGORY_EMOJIS.default}</span>`;
+            }
+
+            document.getElementById('viewName').textContent = product.name;
+            document.getElementById('viewCat').innerHTML = `<span class="cat-badge ${product.category}">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</span>`;
+            document.getElementById('viewPrice').textContent = `$${Number(product.price).toFixed(2)}`;
+            document.getElementById('viewStock').textContent = `${product.stock} units`;
+            document.getElementById('viewDesc').textContent = product.description || '—';
+
+            openModal('viewModal');
+          }
+
+
+          // ─── DELETE PRODUCT ─────────────────────────
+          function openDelete(productId, productName) {
+
+            deletingId = productId;
+            console.log(deletingId);
+
+            document.getElementById('deleteName').textContent = `"${productName}"`;
+            openModal('deleteModal');
+          }
+
+          function confirmDelete() {
+            if (!deletingId) return;
+
+            fetch(`/dashboard/delete-product/${deletingId}`, {
+              method: 'DELETE' // أو POST حسب السيرفر
+            })
+              .then(response => {
+                // لو السيرفر رجع نجاح (200) أو عمل redirect لصفحة تانية بنجاح
+                if (response.ok || response.redirected) {
+                  closeModal('deleteModal');
+                  window.location.reload(); // تحديث الصفحة عشان يختفي المنتج
+                } else {
+                  alert('فشل حذف المنتج من السيرفر');
+                }
+              })
+              .catch(err => {
+                console.error('Error:', err);
+                // تلميح: ساعات الـ redirect بيسبب خطأ هنا بالرغم من الحذف، فممكن نحدث الصفحة برضه للتأكيد
+                window.location.reload();
+              });
+          }
+
+          // ─── FORM HELPERS ───────────────────────────
+          function clearForm() {
+            ['fieldName', 'fieldPrice', 'fieldCategory', 'fieldStock', 'fieldDesc', 'fieldImage'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.value = '';
+            });
+            const fileInput = document.getElementById('imgFile');
+            if (fileInput) fileInput.value = '';
+            const preview = document.getElementById('imgPreview');
+            if (preview) preview.style.display = 'none';
+            clearErrors();
+          }
+
+          function clearErrors() {
+            ['errName', 'errPrice', 'errCategory', 'errStock'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.style.display = 'none';
+            });
+            ['fieldName', 'fieldPrice', 'fieldCategory', 'fieldStock'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.classList.remove('has-error');
+            });
+          }
+
+          function showError(errId, inputId) {
+            const errEl = document.getElementById(errId);
+            const inputEl = document.getElementById(inputId);
+            if (errEl) errEl.style.display = 'block';
+            if (inputEl) inputEl.classList.add('has-error');
+          }
+
+          // ─── IMAGE PREVIEW ──────────────────────────
+          function previewImage(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // عرض معاينة محلية فقط
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+              const preview = document.getElementById('imgPreview');
+              if (preview) {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+              }
+            };
+            reader.readAsDataURL(file);
+
+            // ملاحظة: الـ file هيتبعت للسيرفر عبر form submit العادي
+            // مش محتاجين نعمل حاجة إضافية هنا
+          }
+
+          function handleDrop(e) {
+            e.preventDefault();
+            const area = document.getElementById('uploadArea');
+            if (area) area.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0];
+            if (!file) return;
+
+            // تعيين الملف في الـ input
+            const fileInput = document.getElementById('imgFile');
+            if (fileInput) {
+              fileInput.files = e.dataTransfer.files;
+              previewImage({ target: fileInput });
+            }
+          }
+
+          // ─── TOAST NOTIFICATION ─────────────────────
+          function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toastIcon');
+            const msgEl = document.getElementById('toastMsg');
+
+            if (!toast || !icon || !msgEl) return;
+
+            msgEl.textContent = msg;
+            icon.className = `toast-icon ${type}`;
+            icon.innerHTML = type === 'success'
+              ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
+              : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>`;
+
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+          }
+
+          // ─── SIDEBAR TOGGLE ─────────────────────────
+          function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const main = document.getElementById('adminMain');
+            if (sidebar) sidebar.classList.toggle('collapsed');
+            if (main) main.classList.toggle('expanded');
+          }
+
+          // ─── SELECT ALL CHECKBOX ────────────────────
+          function toggleAll(cb) {
+            document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+          }
+          // ─── SIDEBAR TOGGLE (Mobile Optimized) ────────────────
+          function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const body = document.body;
+
+            if (!sidebar) return;
+
+            sidebar.classList.toggle('open');
+
+            if (overlay) {
+              overlay.classList.toggle('open');
+            }
+
+            // منع الـ scroll لما الـ sidebar مفتوح على الموبايل
+            if (window.innerWidth <= 1023) {
+              body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            }
+          }
+
+          // ─── Close sidebar when pressing Escape ───────────────
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+              const sidebar = document.getElementById('sidebar');
+              if (sidebar?.classList.contains('open')) {
+                toggleSidebar();
+              }
+            }
+          });
+
+          // ─── Close sidebar when clicking a nav item (mobile) ─
+          document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+              if (window.innerWidth <= 1023) {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar?.classList.contains('open')) {
+                  toggleSidebar();
+                }
+              }
+            });
+          });
+
+          // ─── Handle window resize ────────────────────────────
+          let resizeTimer;
+          window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+              const sidebar = document.getElementById('sidebar');
+              const overlay = document.getElementById('sidebarOverlay');
+              const body = document.body;
+
+              // لو رجعنا للديسكتوب، نقفل الـ sidebar ونظف الـ styles
+              if (window.innerWidth > 1023) {
+                if (sidebar) {
+                  sidebar.classList.remove('open');
+                  sidebar.classList.remove('collapsed');
+                }
+                if (overlay) overlay.classList.remove('open');
+                body.style.overflow = '';
+              }
+            }, 250);
+          });
+
+          // ─── Rest of your existing JS (filterProducts, modals, etc.) ───
+          // ... (خلي باقي الكود القديم زي ما هو) ...
+        </script>
 
 </body>
 

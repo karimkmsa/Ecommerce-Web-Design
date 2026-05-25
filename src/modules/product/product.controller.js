@@ -1,15 +1,40 @@
-import productModel from "../../dataBase/models/product.model.js"
+import productModel from "../../../dataBase/models/product.model.js"
+import ApiFeatures from '../../utils/apiFeatures.js';
+
 
 
 export const getProduct = async (req, res) => {
 
-    const allproducts = await productModel.find();
+  const limit = 4;
 
-    res.render("ProductListingPage", {
+  const totalProducts =
+    await productModel.countDocuments();
 
-        allproducts
+  const totalPages =
+    Math.ceil(totalProducts / limit);
 
-    });
+  let apiFeature =
+    new ApiFeatures(
+      productModel.find(),
+      req.query
+    ).pagination().search().filter().fields();
+
+  let allproducts =
+    await apiFeature.mongooseQuery;
+
+  res.render("ProductListingPage", {
+
+     allproducts,
+
+    currentPage: apiFeature.page,
+
+    totalPages,
+
+    keyword: req.query.keyword || '',
+
+    category: req.query.category || ''
+
+  });
 
 };
 export const getProductId = async (req, res) => {
@@ -26,28 +51,23 @@ export const getProductId = async (req, res) => {
 };
 export const addProduct = async (req, res) => {
   try {
-    // 🐛 Debug: شوف إيه اللي وصل
-    console.log('📥 req.body:', req.body);
-    console.log('📥 req.file:', req.file);
+ 
 
-    // ✅ حماية: لو الـ body مش موجود
     if (!req.body) {
-      console.error('❌ req.body is undefined - Check multer setup!');
+      console.error(' req.body is undefined - Check multer setup!');
       return res.status(400).send('Form data not received. Check enctype and multer.');
     }
 
     // ✅ استخراج البيانات
     const { name, price, category, description, stock, imageUrl } = req.body;
     
-    // ✅ معالجة الصورة
     let finalImage = '';
     if (req.file?.filename) {
-      finalImage = req.file.filename;  // من الـ upload
+      finalImage = req.file.filename; 
     } else if (imageUrl?.startsWith('http')) {
       finalImage = imageUrl;  // رابط خارجي
     }
 
-    // ✅ حفظ في الـ Database - استخدم create مش insertMany!
     const newProduct = await productModel.create({
       name,
       price: parseFloat(price),
@@ -61,7 +81,7 @@ export const addProduct = async (req, res) => {
     res.redirect("/dashboard/admin");
     
   } catch (error) {
-    console.error('💥 Error:', error);
+    console.error(' Error:', error);
     res.status(500).send('Error: ' + error.message);
   }
 };
@@ -124,9 +144,27 @@ export const deleteProduct = async (req, res) => {
 
 
 export const dashboardPage = async (req, res) => {
-   const products = await productModel.find();
+   const limit = 4;
+
+   const totalProducts = await productModel.countDocuments();
+
+   const totalPages = Math.ceil(totalProducts / limit);
+
+   let apiFeature = new ApiFeatures(
+      productModel.find(),
+      req.query
+   )
+   .search()
+   .filter()
+   .pagination();
+
+   const products = await apiFeature.mongooseQuery;
 
    res.render("adminDashboard", {
-      products
+      products,
+      currentPage: apiFeature.page,
+      totalPages,
+      keyword: req.query.keyword || "",
+      category: req.query.category || ""
    });
 };

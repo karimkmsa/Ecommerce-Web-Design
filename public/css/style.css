@@ -3284,25 +3284,7 @@ a {
   align-items: center;
   gap: 12px;
 }
-.topbar-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 7px 12px;
-  background: #f8f8f8;
-  width: 220px;
-}
-.topbar-search-wrap input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  color: #444;
-  width: 100%;
-  font-family: inherit;
-}
+
 .topbar-icon-btn {
   position: relative;
   background: none;
@@ -3410,36 +3392,9 @@ a {
   align-items: center;
   gap: 10px;
 }
-.tbl-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 7px 12px;
-  background: #f8f8f8;
-  width: 200px;
-}
-.tbl-search-wrap input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  color: #444;
-  width: 100%;
-  font-family: inherit;
-}
-.tbl-filter-select {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 13px;
-  color: #444;
-  outline: none;
-  cursor: pointer;
-  background: #fff;
-  font-family: inherit;
-}
+
+
+
 .btn-add-product {
   display: flex;
   align-items: center;

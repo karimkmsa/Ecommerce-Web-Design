@@ -14,72 +14,105 @@
   <header class="header">
     <div class="header-top">
       <a href="/" class="logo">
-        <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9" />
             <path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round" />
-          </svg></div>
+          </svg>
+        </div>
         <span class="logo-text">Brand</span>
       </a>
+
       <div class="search-bar">
         <input type="text" class="search-input" placeholder="Search" />
         <div class="search-divider"></div>
         <select class="search-category">
           <option>All category</option>
-          <option selected>Electronics</option>
+          <option>Electronics</option>
+          <option>Clothing</option>
+          <option>Home</option>
         </select>
         <button class="search-btn">Search</button>
       </div>
+
       <nav class="header-icons">
-        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-          </svg><span>Profile</span></a>
-        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
-            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-          </svg><span>Message</span></a>
-        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
-            <path
-              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-          </svg><span>Orders</span></a>
-        <a href="#" class="icon-link"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <path d="M16 10a4 4 0 01-8 0" />
-          </svg><span>My cart</span></a>
+
+        <% if (user) { %>
+          <a href="/profile" class="icon-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profile</span>
+          </a>
+          <% } else { %>
+        <a href="/user/register" class="icon-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profile</span>
+          </a>
+            <% } %>
+
+              <a href="#" class="icon-link">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                </svg>
+                <span>Message</span>
+              </a>
+              <a href="#" class="icon-link">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <span>Orders</span>
+              </a>
+              <a href="#" class="icon-link">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                <span>My cart</span>
+              </a>
       </nav>
     </div>
+
     <div class="header-nav">
       <div class="nav-left">
-        <a href="/products" class="nav-link nav-category"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
+        <a href="/products" class="nav-link nav-category">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="6" x2="21" y2="6" />
             <line x1="3" y1="12" x2="21" y2="12" />
             <line x1="3" y1="18" x2="21" y2="18" />
-          </svg> All category</a>
+          </svg>
+          All category
+        </a>
         <a href="#" class="nav-link">Hot offers</a>
         <a href="#" class="nav-link">Gift boxes</a>
         <a href="#" class="nav-link">Projects</a>
         <a href="#" class="nav-link">Menu item</a>
-        <a href="#" class="nav-link nav-dropdown">Help <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
+        <a href="#" class="nav-link nav-dropdown">Help
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
-          </svg></a>
+          </svg>
+        </a>
       </div>
       <div class="nav-right">
-        <a href="#" class="nav-link nav-dropdown">English, USD <svg width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2">
+        <a href="#" class="nav-link nav-dropdown">English, USD
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
-          </svg></a>
-        <a href="#" class="nav-link nav-dropdown">Ship to 🇩🇪 <svg width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2">
+          </svg>
+        </a>
+        <a href="#" class="nav-link nav-dropdown">Ship to 🇩🇪
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
-          </svg></a>
+          </svg>
+        </a>
       </div>
     </div>
+
   </header>
 
   <!-- BREADCRUMB -->
