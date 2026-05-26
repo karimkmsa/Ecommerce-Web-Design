@@ -2341,7 +2341,48 @@ a {
   display: flex;
   gap: 2px;
 }
+.detail-actions{
+    display:flex;
+    gap:14px;
+    margin-top:28px;
+}
 
+.btn-add-cart,
+.btn-buy-now{
+    flex:1;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.btn-add-cart{
+    background:#fff;
+    border:1.5px solid #0d6efd;
+    color:#0d6efd;
+}
+
+.btn-add-cart:hover{
+    background:#f4f8ff;
+}
+
+.btn-buy-now{
+    background:#0d6efd;
+    color:#fff;
+    box-shadow:0 10px 25px rgba(13,110,253,.25);
+}
+
+.btn-buy-now:hover{
+    transform:translateY(-2px);
+    opacity:.95;
+}
 /* Tier pricing */
 .tier-pricing {
   display: flex;
