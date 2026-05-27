@@ -125,13 +125,42 @@ export const logout = (req, res) => {
     });
 };
 
-export const updateUser = async (req, res) => {
-  let { name, id } = req.body
-  const updated = await userModel.findByIdAndUpdate(id, { name }, { new: true })
+export const updateProfile = async (req, res) => {
 
-  res.json({ message: "user updated", updated })
+    try {
 
-}
+        const { firstName, lastName, email } = req.body;
+
+        const user = await userModel.findByIdAndUpdate(
+
+            req.user._id,
+
+            {
+                firstName,
+                lastName
+            },
+
+            { new: true }
+
+        );
+
+        res.json({
+            success: true,
+            message: "Profile updated",
+            redirect: "/profile"
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+
+    }
+};
 
 export const deleteUser = async (req, res) => {
   let { id } = req.body

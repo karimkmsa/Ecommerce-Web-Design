@@ -29,23 +29,18 @@ export const createOrder = async (req, res) => {
 
         const product = item.product;
 
-        if (!product) {
-            return res.status(400).json({
-                message: "Product not found"
-            });
-        }
+        if (!product) continue;
 
         if (item.quantity > product.stock) {
             return res.status(400).json({
-                message: `Not enough stock for ${product.title}. Available: ${product.stock}`
+                message: `${product.title} not enough stock`
             });
         }
 
         product.stock -= item.quantity;
         await product.save();
 
-        const itemTotal = item.quantity * product.price;
-        totalPrice += itemTotal;
+        totalPrice += item.quantity * product.price;
 
         orderProducts.push({
             product: product._id,
@@ -57,7 +52,8 @@ export const createOrder = async (req, res) => {
     const order = await orderModel.create({
         user: userId,
         products: orderProducts,
-        totalPrice
+        totalPrice,
+        status: "confirmed"
     });
 
     cart.products = [];
@@ -66,7 +62,6 @@ export const createOrder = async (req, res) => {
     res.json({
         success: true,
         message: "Order created successfully",
-        totalPrice,
         order
     });
 };

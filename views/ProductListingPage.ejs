@@ -10,7 +10,7 @@
 
 <body>
 
-   <header class="header">
+  <header class="header">
     <div class="header-top">
       <a href="/" class="logo">
         <div class="logo-icon">
@@ -21,18 +21,40 @@
         </div>
         <span class="logo-text">Brand</span>
       </a>
+      <form class="search-bar" action="/products" method="GET">
 
-      <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Search" />
+        <input type="text" class="search-input" name="keyword" placeholder="Search" value="<%= keyword %>" />
+
         <div class="search-divider"></div>
-        <select class="search-category">
-          <option>All category</option>
-          <option>Electronics</option>
-          <option>Clothing</option>
-          <option>Home</option>
+
+        <select class="search-category" name="category">
+
+          <option value="">
+            All category
+          </option>
+
+          <option value="Electronics" <%=category==="Electronics" ? "selected" : "" %>
+            >
+            Electronics
+          </option>
+
+          <option value="fashion" <%=category==="fashion" ? "selected" : "" %>
+            >
+            fashion
+          </option>
+
+          <option value="Home" <%=category==="Home" ? "selected" : "" %>
+            >
+            Home
+          </option>
+
         </select>
-        <button class="search-btn">Search</button>
-      </div>
+
+        <button class="search-btn">
+          Search
+        </button>
+
+      </form>
 
       <nav class="header-icons">
 
@@ -45,13 +67,13 @@
             <span>Profile</span>
           </a>
           <% } else { %>
-        <a href="/user/register" class="icon-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-            </svg>
-            <span>Profile</span>
-          </a>
+            <a href="/user/register" class="icon-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
+              <span>Profile</span>
+            </a>
             <% } %>
 
               <a href="#" class="icon-link">

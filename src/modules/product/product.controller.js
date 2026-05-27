@@ -24,7 +24,7 @@ export const getProduct = async (req, res) => {
 
   res.render("ProductListingPage", {
 
-     allproducts,
+    allproducts,
 
     currentPage: apiFeature.page,
 
@@ -39,19 +39,21 @@ export const getProduct = async (req, res) => {
 };
 export const getProductId = async (req, res) => {
 
-    let {id} = req.params 
-    const product = await productModel.findById({_id:id});
+  let { id } = req.params
+  const product = await productModel.findById({ _id: id });
 
-   res.render("ProductDetailsPage", {
+  res.render("ProductDetailsPage", {
 
-        product
+    product,
+    keyword: "",
+    category: ""
 
-    });
+  });
 
 };
 export const addProduct = async (req, res) => {
   try {
- 
+
 
     if (!req.body) {
       console.error(' req.body is undefined - Check multer setup!');
@@ -60,10 +62,10 @@ export const addProduct = async (req, res) => {
 
     // ✅ استخراج البيانات
     const { name, price, category, description, stock, imageUrl } = req.body;
-    
+
     let finalImage = '';
     if (req.file?.filename) {
-      finalImage = req.file.filename; 
+      finalImage = req.file.filename;
     } else if (imageUrl?.startsWith('http')) {
       finalImage = imageUrl;  // رابط خارجي
     }
@@ -79,7 +81,7 @@ export const addProduct = async (req, res) => {
 
     console.log('✅ Saved:', newProduct._id);
     res.redirect("/dashboard/admin");
-    
+
   } catch (error) {
     console.error(' Error:', error);
     res.status(500).send('Error: ' + error.message);
@@ -144,27 +146,27 @@ export const deleteProduct = async (req, res) => {
 
 
 export const dashboardPage = async (req, res) => {
-   const limit = 4;
+  const limit = 4;
 
-   const totalProducts = await productModel.countDocuments();
+  const totalProducts = await productModel.countDocuments();
 
-   const totalPages = Math.ceil(totalProducts / limit);
+  const totalPages = Math.ceil(totalProducts / limit);
 
-   let apiFeature = new ApiFeatures(
-      productModel.find(),
-      req.query
-   )
-   .search()
-   .filter()
-   .pagination();
+  let apiFeature = new ApiFeatures(
+    productModel.find(),
+    req.query
+  )
+    .search()
+    .filter()
+    .pagination();
 
-   const products = await apiFeature.mongooseQuery;
+  const products = await apiFeature.mongooseQuery;
 
-   res.render("adminDashboard", {
-      products,
-      currentPage: apiFeature.page,
-      totalPages,
-      keyword: req.query.keyword || "",
-      category: req.query.category || ""
-   });
+  res.render("adminDashboard", {
+    products,
+    currentPage: apiFeature.page,
+    totalPages,
+    keyword: req.query.keyword || "",
+    category: req.query.category || ""
+  });
 };

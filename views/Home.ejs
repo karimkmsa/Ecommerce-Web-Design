@@ -24,17 +24,40 @@
         <span class="logo-text">Brand</span>
       </a>
 
-      <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Search" />
+   <form class="search-bar" action="/products" method="GET">
+
+        <input type="text" class="search-input" name="keyword" placeholder="Search" value="<%= keyword %>" />
+
         <div class="search-divider"></div>
-        <select class="search-category">
-          <option>All category</option>
-          <option>Electronics</option>
-          <option>Clothing</option>
-          <option>Home</option>
+
+        <select class="search-category" name="category">
+
+          <option value="">
+            All category
+          </option>
+
+          <option value="Electronics" <%=category==="Electronics" ? "selected" : "" %>
+            >
+            Electronics
+          </option>
+
+          <option value="fashion" <%=category==="fashion" ? "selected" : "" %>
+            >
+            fashion
+          </option>
+
+          <option value="Home" <%=category==="Home" ? "selected" : "" %>
+            >
+            Home
+          </option>
+
         </select>
-        <button class="search-btn">Search</button>
-      </div>
+
+        <button class="search-btn">
+          Search
+        </button>
+
+      </form>
 
       <nav class="header-icons">
 

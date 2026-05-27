@@ -32,7 +32,7 @@
         </div>
 
         <div class="menu-list">
-            <a href="/profile/edit" class="menu-item">
+            <a href="user/profile/edit" class="menu-item">
                 <span class="menu-item-text">Edit Profile</span>
                 <span class="menu-item-arrow">→</span>
             </a>
@@ -48,27 +48,27 @@
             </a>
         </div>
         <div class="logout-item">
-    <button class="logout-btn" onclick="logout()">
-        <span class="logout-text">
-            <span class="logout-icon">🚪</span>
-            Logout
-        </span>
-        <span class="logout-arrow">→</span>
-    </button>
-</div>
+            <button class="logout-btn" onclick="logout()">
+                <span class="logout-text">
+                    <span class="logout-icon">🚪</span>
+                    Logout
+                </span>
+                <span class="logout-arrow">→</span>
+            </button>
+        </div>
     </div>
-<script>
-async function logout() {
+    <script>
+        async function logout() {
 
-    const res = await fetch("/user/logout");
+            const res = await fetch("/user/logout");
 
-    const data = await res.json();
+            const data = await res.json();
 
-    window.location.href = data.redirect;
-}
+            window.location.href = data.redirect;
+        }
 
-</script>
-    
+    </script>
+
 </body>
 
 </html>

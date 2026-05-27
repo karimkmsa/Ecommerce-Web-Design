@@ -26,7 +26,15 @@ app.use((req, res, next) => {
     res.locals.user = req.user || null;
     next();
 });
+app.use((req, res, next) => {
 
+    res.locals.keyword = req.query.keyword || "";
+
+    res.locals.category = req.query.category || "";
+
+    next();
+
+});
 
 
 
@@ -47,7 +55,7 @@ app.get("/", (req, res) => {
 });
 
 
-// Products Page
+
 app.use("/products", productRouter);
 app.use("/dashboard",productRouter)
 app.use("/user",userRouter)

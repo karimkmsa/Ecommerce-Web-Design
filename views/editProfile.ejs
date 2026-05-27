@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="/css/profile.css">
+
+</head>
+
+<body>
+
+    <div class="profile-container">
+
+        <h1 class="profile-title">Edit Profile</h1>
+
+        <form id="editForm">
+
+            <div class="input-group">
+
+                <label>First Name</label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    value="<%= user.firstName %>"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Last Name</label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    value="<%= user.lastName %>"
+                >
+
+            </div>
+
+        
+
+            <button type="submit" class="logout-btn">
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+<script>
+
+document
+.getElementById("editForm")
+.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const data = {
+
+        firstName:
+            document.getElementById("firstName").value,
+
+        lastName:
+            document.getElementById("lastName").value,
+
+
+    };
+
+    const res = await fetch("/user/edit", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+
+        window.location.href = result.redirect;
+
+    } else {
+
+        alert(result.message);
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
