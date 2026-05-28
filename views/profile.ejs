@@ -10,53 +10,127 @@
 </head>
 
 <body>
-    <div class="profile-container">
-        <h1 class="profile-title">Your Profile</h1>
+<div class="profile-container">
 
-        <div class="profile-header">
-            <div class="avatar">
-                <span class="avatar-text">
-                    <%= user ? user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase() : "G" %>
-                </span>
-            </div>
-            <div class="profile-info">
+    <h1 class="profile-title">
+        Your Profile
+    </h1>
 
-                <h2>
-                    <%= user ? user.firstName + " " + user.lastName : "Guest" %>
-                </h2>
+    <div class="profile-header">
 
-                <p>
-                    <%= user ? user.email : "No email" %>
-                </p>
-            </div>
+        <div class="avatar">
+
+            <span class="avatar-text">
+
+                <%= user ? user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase() : "G" %>
+
+            </span>
+
         </div>
 
-        <div class="menu-list">
-            <a href="user/profile/edit" class="menu-item">
-                <span class="menu-item-text">Edit Profile</span>
-                <span class="menu-item-arrow">→</span>
+        <div class="profile-info">
+
+            <h2>
+
+                <%= user ? user.firstName + " " + user.lastName : "Guest" %>
+
+            </h2>
+
+            <p>
+
+                <%= user ? user.email : "No email" %>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- MENU -->
+
+    <div class="menu-list">
+
+        <% if(user && user.role === "admin") { %>
+
+            <a href="/dashboard/admin" class="menu-item">
+
+                <span class="menu-item-text">
+                    Dashboard
+                </span>
+
+                <span class="menu-item-arrow">
+                    →
+                </span>
+
+            </a>
+
+        <% } else { %>
+
+            <a href="/user/profile/edit" class="menu-item">
+
+                <span class="menu-item-text">
+                    Edit Profile
+                </span>
+
+                <span class="menu-item-arrow">
+                    →
+                </span>
+
             </a>
 
             <a href="/profile/shipping" class="menu-item">
-                <span class="menu-item-text">Shipping Address</span>
-                <span class="menu-item-arrow">→</span>
+
+                <span class="menu-item-text">
+                    Shipping Address
+                </span>
+
+                <span class="menu-item-arrow">
+                    →
+                </span>
+
             </a>
 
             <a href="/profile/payment" class="menu-item">
-                <span class="menu-item-text">Payment Methods</span>
-                <span class="menu-item-arrow">→</span>
-            </a>
-        </div>
-        <div class="logout-item">
-            <button class="logout-btn" onclick="logout()">
-                <span class="logout-text">
-                    <span class="logout-icon">🚪</span>
-                    Logout
+
+                <span class="menu-item-text">
+                    Payment Methods
                 </span>
-                <span class="logout-arrow">→</span>
-            </button>
-        </div>
+
+                <span class="menu-item-arrow">
+                    →
+                </span>
+
+            </a>
+
+        <% } %>
+
     </div>
+
+    <!-- LOGOUT -->
+
+    <div class="logout-item">
+
+        <button class="logout-btn" onclick="logout()">
+
+            <span class="logout-text">
+
+                <span class="logout-icon">
+                    🚪
+                </span>
+
+                Logout
+
+            </span>
+
+            <span class="logout-arrow">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
     <script>
         async function logout() {
 

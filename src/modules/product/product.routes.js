@@ -9,6 +9,8 @@ import {
   updateProduct, 
   deleteProduct 
 } from './product.controller.js';
+import { isAuthenticated } from '../../utils/middleware/auth.middleware.js';
+import { isAdmin } from '../../utils/middleware/isAdmin.js';
 
 const router = express.Router();
 
@@ -34,7 +36,7 @@ const upload = multer({
 });
 
 // 🗂️ Admin Routes - رتب الـ Specific قبل الـ Generic!
-router.get("/admin", dashboardPage);                    // ✅ /dashboard/admin
+router.get("/admin",isAuthenticated,isAdmin,dashboardPage);
 router.get("/", getProduct);                            // ✅ /dashboard/
 
 // ✅ Specific routes BEFORE /:id

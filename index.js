@@ -9,6 +9,7 @@ import orderRouter from './src/modules/checkout/checkout.routes.js'
 import cookieParser from "cookie-parser";
 import { isAuthenticated } from "../Ecommerce Web Design/src/utils/middleware/auth.middleware.js";
 import dotenv from 'dotenv'
+import { seedAdmin } from './src/modules/seedAdmin.js';
 dotenv.config()
 
 
@@ -16,7 +17,7 @@ const app = express();
 const port = 3000;
 
 connection();
-
+seedAdmin();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
