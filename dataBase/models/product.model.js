@@ -1,56 +1,109 @@
 import mongoose from "mongoose";
 
+const reviewSchema = new mongoose.Schema({
 
+    user: {
 
+        type: mongoose.Schema.Types.ObjectId,
+
+        ref: "User"
+
+    },
+
+    name: {
+
+        type: String
+
+    },
+
+    rating: {
+
+        type: Number
+
+    },
+
+    comment: {
+
+        type: String
+
+    }
+
+}, { timestamps: true });
 
 const productSchema = new mongoose.Schema({
 
-name:{
-type:String
+    name: {
 
-},
-price:{
-type:Number
+        type: String
 
-},
-category:{
-type:String,
-enum: ["electronics", "fashion", "sports"],
-},
-description:{
-type:String
+    },
 
-},
-stock:{
-type:Number
+    price: {
 
-},
-image:{
-    type:String
-},
-rating: {
-    type: Number,
-    default: 4.5
-},
+        type: Number
 
-reviews: {
-    type: Number,
-    default: 0
-},
+    },
 
-sold: {
-    type: Number,
-    default: 0
-}
+    category: {
 
+        type: String,
 
+        enum: ["electronics", "fashion", "sports"]
 
+    },
 
+    description: {
 
+        type: String
 
-},{timestamps:true})
+    },
 
+    stock: {
 
-const produtModel = mongoose.model("Product",productSchema)
+        type: Number
 
-export default produtModel
+    },
+
+    image: {
+
+        type: String
+
+    },
+
+    rating: {
+
+        type: Number,
+
+        default: 0
+
+    },
+
+    numReviews: {
+
+        type: Number,
+
+        default: 0
+
+    },
+
+    reviews: [reviewSchema],
+
+    sold: {
+
+        type: Number,
+
+        default: 0
+
+    }
+
+}, { timestamps: true });
+
+const productModel = mongoose.model(
+
+    "Product",
+
+    productSchema
+
+);
+
+export default productModel;

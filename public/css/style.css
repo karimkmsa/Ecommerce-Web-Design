@@ -2128,9 +2128,50 @@ a {
   justify-content: center;
   cursor: pointer;
   color: #aaa;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
-.wishlist-btn:hover { color: #e05050; border-color: #e05050; }
+
+.wishlist-btn:hover {
+  color: #e05050;
+  border-color: #e05050;
+}
+
+/* ── Active state (added to wishlist) ── */
+.wishlist-btn.active {
+  color: #e53935;
+  border-color: #e53935;
+  background: #fff0f0;
+}
+
+.wishlist-btn.active svg {
+  fill: #e53935;
+  stroke: #e53935;
+}
+
+.wishlist-btn.active:hover {
+  background: #ffe0e0;
+  border-color: #c62828;
+  color: #c62828;
+}
+
+/* ── Disabled state (while fetch is running) ── */
+.wishlist-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Pop animation on toggle ── */
+@keyframes heartPop {
+  0%   { transform: scale(1);    }
+  40%  { transform: scale(1.35); }
+  70%  { transform: scale(0.9);  }
+  100% { transform: scale(1);    }
+}
+
+.wishlist-btn.pop {
+  animation: heartPop 0.35s ease forwards;
+}
 
 .product-price-row {
   display: flex;
@@ -5602,4 +5643,64 @@ img, svg {
   
   /* منع الـ Horizontal Scroll */
   .admin-table-section { overflow: visible; }
+}
+.review-section {
+  background: rgb(26, 115, 232);
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.review-section h3 {
+  margin-bottom: 15px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 5px;
+  font-size: 28px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.star {
+  color: #444;
+  transition: 0.2s;
+}
+
+.star.active {
+  color: gold;
+  transform: scale(1.1);
+}
+
+.review-section textarea {
+  width: 100%;
+  
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  resize: none;
+  background: white;
+  color: black;
+}
+
+.review-section button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: gold;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.review-card {
+  background: white;
+  color: black;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
 }

@@ -6,6 +6,7 @@ import productRouter from './src/modules/product/product.routes.js';
 import userRouter from './src/modules/user/user.routes.js';
 import cartRouter from './src/modules/cart/cart.routes.js'
 import orderRouter from './src/modules/checkout/checkout.routes.js'
+import wishlistRouter from "./src/modules/wishlist/wishlist.routes.js";
 import cookieParser from "cookie-parser";
 import { isAuthenticated } from "../Ecommerce Web Design/src/utils/middleware/auth.middleware.js";
 import dotenv from 'dotenv'
@@ -62,6 +63,7 @@ app.use("/dashboard",productRouter)
 app.use("/user",userRouter)
 app.use("/cart",cartRouter)
 app.use("/order", orderRouter);
+app.use("/wishlist", wishlistRouter);
 // Product Details Page
 app.get("/products/:id", (req, res) => {
 

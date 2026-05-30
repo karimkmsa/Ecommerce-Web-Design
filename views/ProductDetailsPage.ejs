@@ -23,7 +23,7 @@
         <span class="logo-text">Brand</span>
       </a>
 
-     <form class="search-bar" action="/products" method="GET">
+      <form class="search-bar" action="/products" method="GET">
 
         <input type="text" class="search-input" name="keyword" placeholder="Search" value="<%= keyword %>" />
 
@@ -189,7 +189,6 @@
           <%= product.name %>
 
         </h1>
-
         <div class="detail-rating-row">
 
           <div class="detail-stars">
@@ -197,7 +196,7 @@
             <% for(let i=0; i < 5; i++) { %>
 
               <svg width="15" height="15" viewBox="0 0 24 24"
-                fill="<%= i < Math.floor(product.rating || 4) ? '#FBBF24' : '#e0e0e0' %>" stroke="none">
+                fill="<%= i < Math.floor(product.rating || 0) ? '#FBBF24' : '#e0e0e0' %>" stroke="none">
 
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -209,25 +208,19 @@
           </div>
 
           <span>
-
-            <%= product.rating || 4.5 %>
-
+            <%= (product.rating || 0).toFixed(1) %>
           </span>
 
           <span>·</span>
 
           <span>
-
-            <%= product.reviews || 32 %> reviews
-
+            <%= product.reviews ? product.reviews.length : 0 %> reviews
           </span>
 
           <span>·</span>
 
           <span>
-
-            <%= product.sold || 154 %> sold
-
+            <%= product.sold || 0 %> sold
           </span>
 
         </div>
@@ -427,7 +420,63 @@
 
         </div>
         <div class="tab-panel" id="tab-reviews">
-          <p class="tab-desc-text">No reviews yet. Be the first to review this product.</p>
+          <div class="review-section">
+
+            <h3>
+              Add Review
+            </h3>
+
+            <form id="reviewForm">
+
+              <div class="star-rating" id="starRating">
+                <input type="hidden" id="rating" value="0">
+
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+              </div>
+
+              <textarea id="comment" placeholder="Write your review"></textarea>
+
+              <button type="submit">
+
+                Submit Review
+
+              </button>
+
+            </form>
+            <div class="reviews-list">
+
+              <% product.reviews.forEach(review=> { %>
+
+                <div class="review-card">
+
+                  <h4>
+
+                    <%= review.name %>
+
+                  </h4>
+
+                  <p>
+
+                    ⭐ <%= review.rating %>
+
+                  </p>
+
+                  <p>
+
+                    <%= review.comment %>
+
+                  </p>
+
+                </div>
+
+                <% }) %>
+
+            </div>
+          </div>
         </div>
         <div class="tab-panel" id="tab-shipping">
           <p class="tab-desc-text">Worldwide shipping available. Delivery within 7–14 business days. Free shipping on
@@ -711,6 +760,67 @@
       window.location.href = `/checkout/${productId}`;
 
     }
+    document
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const form = document.getElementById("reviewForm");
+      const stars = document.querySelectorAll(".star");
+      const ratingInput = document.getElementById("rating");
+      const commentInput = document.getElementById("comment");
+
+      // ⭐ Star rating logic
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          const value = Number(star.dataset.value);
+          ratingInput.value = value;
+
+          stars.forEach((s) => {
+            const starValue = Number(s.dataset.value);
+            s.classList.toggle("active", starValue <= value);
+          });
+        });
+      });
+
+      // 🚀 Submit review
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        try {
+          const rating = Number(ratingInput.value);
+          const comment = commentInput.value.trim();
+
+          if (!rating) {
+            alert("Please select a rating");
+            return;
+          }
+
+          if (!comment) {
+            alert("Please write a comment");
+            return;
+          }
+
+          const res = await fetch(`/products/<%= product._id %>/review`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ rating, comment })
+          });
+
+          const data = await res.json();
+
+          alert(data.message);
+
+          if (res.ok) {
+            location.reload();
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+    });
   </script>
 
 </body>

@@ -7,7 +7,8 @@ import {
   getProductId, 
   addProduct, 
   updateProduct, 
-  deleteProduct 
+  deleteProduct, 
+  addReview
 } from './product.controller.js';
 import { isAuthenticated } from '../../utils/middleware/auth.middleware.js';
 import { isAdmin } from '../../utils/middleware/isAdmin.js';
@@ -46,5 +47,9 @@ router.delete("/delete-product/:id", deleteProduct);    // ✅ /dashboard/delete
 
 // ✅ Generic route LAST (عشان مياخدش على الـ routes اللي فوق)
 router.get("/:id", getProductId);                       // ✅ /dashboard/:id
-
+router.post(
+    "/:id/review",
+    isAuthenticated,
+    addReview
+);
 export default router;

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-     lastName: {
+    lastName: {
         type: String,
         required: true
     },
@@ -20,6 +20,13 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    wishlist: {
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product"
+        }],
+        default: []
     },
 
     role: {

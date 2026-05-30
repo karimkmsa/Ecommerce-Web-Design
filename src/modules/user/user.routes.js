@@ -28,4 +28,5 @@ router.get("/profile", requireAuth, (req, res) => {
     res.render("profile", { user: req.user });
 });
 
-export default router;
+
+export default router 

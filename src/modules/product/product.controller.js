@@ -170,3 +170,97 @@ export const dashboardPage = async (req, res) => {
     category: req.query.category || ""
   });
 };
+//REVIEW CONTROLLR 
+export const addReview = async (req, res) => {
+
+    try {
+
+        if (!req.user) {
+
+            return res.status(401).json({
+
+                message: "Please login first"
+
+            });
+
+        }
+
+        const { rating, comment } = req.body;
+
+        const product = await productModel.findById(
+
+            req.params.id
+
+        );
+
+        if (!product) {
+
+            return res.status(404).json({
+
+                message: "Product not found"
+
+            });
+
+        }
+
+const alreadyReviewed = product.reviews.some(
+  (review) => review.user?.toString() === req.user._id.toString()
+);
+
+        if (alreadyReviewed) {
+
+            return res.status(400).json({
+
+                message: "You already reviewed this product"
+
+            });
+
+        }
+
+        const review = {
+
+            user: req.user._id,
+
+            name: req.user.firstName,
+
+            rating: Number(rating),
+
+            comment
+
+        };
+
+        product.reviews.push(review);
+
+        product.numReviews = product.reviews.length;
+
+        product.rating =
+
+            product.reviews.reduce(
+
+                (acc, item) => acc + item.rating,
+
+                0
+
+            ) / product.reviews.length;
+
+        await product.save();
+
+        res.json({
+
+            message: "Review added successfully"
+
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+
+            message: error.message
+
+        });
+
+    }
+
+};
