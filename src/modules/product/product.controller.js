@@ -1,4 +1,6 @@
 import productModel from "../../../dataBase/models/product.model.js"
+import userModel from '../../../dataBase/models/user.model.js'
+import orderModel from '../../../dataBase/models/order.model.js'
 import ApiFeatures from '../../utils/apiFeatures.js';
 
 
@@ -39,16 +41,26 @@ export const getProduct = async (req, res) => {
 };
 export const getProductId = async (req, res) => {
 
-  let { id } = req.params
-  const product = await productModel.findById({ _id: id });
+    const product = await productModel.findById(req.params.id);
 
-  res.render("ProductDetailsPage", {
+    const relatedProducts = await productModel.find({
 
-    product,
-    keyword: "",
-    category: ""
+        category: product.category,
 
-  });
+        _id: { $ne: product._id }
+
+    }).limit(4);
+
+    res.render("ProductDetailsPage", {
+
+        product,
+
+        relatedProducts,
+
+        keyword: "",
+        category: ""
+
+    });
 
 };
 export const addProduct = async (req, res) => {
@@ -143,9 +155,8 @@ export const deleteProduct = async (req, res) => {
 
 
 
-
-
 export const dashboardPage = async (req, res) => {
+
   const limit = 4;
 
   const totalProducts = await productModel.countDocuments();
@@ -162,14 +173,35 @@ export const dashboardPage = async (req, res) => {
 
   const products = await apiFeature.mongooseQuery;
 
+  // Statistics
+  const inStock = await productModel.countDocuments({
+    stock: { $gt: 5 }
+  });
+
+  const lowStock = await productModel.countDocuments({
+    stock: { $gt: 0, $lte: 5 }
+  });
+
+  const outOfStock = await productModel.countDocuments({
+    stock: 0
+  });
+
   res.render("adminDashboard", {
     products,
     currentPage: apiFeature.page,
     totalPages,
+
+    totalProducts,
+    inStock,
+    lowStock,
+    outOfStock,
+
     keyword: req.query.keyword || "",
     category: req.query.category || ""
   });
+
 };
+
 //REVIEW CONTROLLR 
 export const addReview = async (req, res) => {
 

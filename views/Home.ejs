@@ -24,7 +24,7 @@
         <span class="logo-text">Brand</span>
       </a>
 
-   <form class="search-bar" action="/products" method="GET">
+      <form class="search-bar" action="/products" method="GET">
 
         <input type="text" class="search-input" name="keyword" placeholder="Search" value="<%= keyword %>" />
 
@@ -85,22 +85,27 @@
                 </svg>
                 <span>Message</span>
               </a>
-              <a href="#" class="icon-link">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                <span>Orders</span>
-              </a>
-              <a href="/cart" class="icon-link">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <path d="M16 10a4 4 0 01-8 0" />
-                </svg>
+              <% if(user){ %>
 
-                <span>My cart</span>
-              </a>
+                <a href="/order/my-orders" class="icon-link">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  <span>Orders</span>
+                </a>
+
+                <% } %>
+                  <a href="/cart" class="icon-link">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.5">
+                      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                      <line x1="3" y1="6" x2="21" y2="6" />
+                      <path d="M16 10a4 4 0 01-8 0" />
+                    </svg>
+
+                    <span>My cart</span>
+                  </a>
       </nav>
     </div>
 
