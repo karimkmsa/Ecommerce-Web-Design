@@ -6,38 +6,53 @@ import ApiFeatures from '../../utils/apiFeatures.js';
 
 
 export const getProduct = async (req, res) => {
+  try {
+    const limit = 4;
+    const page = Number(req.query.page) || 1;
 
-  const limit = 4;
-
-  const totalProducts =
-    await productModel.countDocuments();
-
-  const totalPages =
-    Math.ceil(totalProducts / limit);
-
-  let apiFeature =
-    new ApiFeatures(
+    let apiFeature = new ApiFeatures(
       productModel.find(),
-      req.query
-    ).pagination().search().filter().fields();
+      { ...req.query, limit, page }
+    )
+      .search()
+      .filter()
+      .fields()
+      .pagination()
+      .sort()    
+;
 
-  let allproducts =
-    await apiFeature.mongooseQuery;
+    const allproducts = await apiFeature.mongooseQuery;
 
-  res.render("ProductListingPage", {
+    // هات البراندات الخاصة بالكاتيجوري المختارة
+    let brandFilter = {};
 
-    allproducts,
+    if (req.query.category) {
+      brandFilter.category = req.query.category;
+    }
 
-    currentPage: apiFeature.page,
+    const brands = await productModel.distinct("brand", brandFilter);
 
-    totalPages,
+    const totalProducts = await productModel.countDocuments(
+      apiFeature.mongooseQuery.getFilter()
+    );
 
-    keyword: req.query.keyword || '',
+    const totalPages = Math.ceil(totalProducts / limit);
 
-    category: req.query.category || ''
+    res.render("ProductListingPage", {
+      allproducts,
+      brands,
+      currentPage: page,
+      totalPages,
+      totalProducts,
+      keyword: req.query.keyword || "",
+      category: req.query.category || "",
+      selectedBrand: req.query.brand || "",
+    });
 
-  });
-
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
 };
 export const getProductId = async (req, res) => {
 
@@ -73,7 +88,7 @@ export const addProduct = async (req, res) => {
     }
 
     // ✅ استخراج البيانات
-    const { name, price, category, description, stock, imageUrl } = req.body;
+    const { name, price, category, description, stock, imageUrl , brand} = req.body;
 
     let finalImage = '';
     if (req.file?.filename) {
@@ -88,7 +103,8 @@ export const addProduct = async (req, res) => {
       category,
       description: description || '',
       stock: parseInt(stock) || 0,
-      image: finalImage
+      image: finalImage,
+      brand
     });
 
     console.log('✅ Saved:', newProduct._id);
@@ -110,7 +126,8 @@ export const updateProduct = async (req, res) => {
       price,
       category,
       description,
-      stock
+      stock,
+      brand
     } = req.body
 
     let image = req.body.image
@@ -127,7 +144,8 @@ export const updateProduct = async (req, res) => {
         category,
         description,
         stock,
-        image
+        image,
+        brand
       },
       { new: true }
     )

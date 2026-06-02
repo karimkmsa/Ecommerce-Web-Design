@@ -141,14 +141,7 @@
 
   </header>
 
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-inner">
-      <a href="#">Home</a><span class="bc-sep">›</span>
-      <a href="#">Clothings</a><span class="bc-sep">›</span>
-      <a href="#">Men's wear</a><span class="bc-sep">›</span>
-      <span class="bc-current">Summer clothing</span>
-    </div>
-  </div>
+
 
   <div class="listing-wrap">
 
@@ -161,11 +154,17 @@
           </svg>
         </div>
         <div class="filter-group-body">
-          <a href="#" class="filter-link">Mobile accessory</a>
-          <a href="#" class="filter-link">Electronics</a>
-          <a href="#" class="filter-link">Smartphones</a>
-          <a href="#" class="filter-link">Modern tech</a>
-          <a href="#" class="filter-link filter-see-all">See all</a>
+          <a href="/products?category=electronics" class="filter-link <%= category==='electronics' ? 'active' : '' %>">
+            Electronics
+          </a>
+
+          <a href="/products?category=fashion" class="filter-link <%= category==='fashion' ? 'active' : '' %>">
+            Fashion
+          </a>
+
+          <a href="/products?category=sports" class="filter-link <%= category==='sports' ? 'active' : '' %>">
+            Sports
+          </a>
         </div>
       </div>
       <div class="filter-group">
@@ -175,31 +174,22 @@
             <polyline points="18 15 12 9 6 15" />
           </svg>
         </div>
-        <div class="filter-group-body"><label class="filter-check"><input type="checkbox"
-              checked /><span>Samsung</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Apple</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Huawei</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Pocco</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Lenovo</span></label>
-          <a href="#" class="filter-link filter-see-all">See all</a>
+        <div class="filter-group-body">
+          <% brands.forEach((brand)=> { %>
+
+            <label class="filter-check">
+              <input type="checkbox" value="<%= brand %>" onchange="filterBrand(this)" <%=selectedBrand===brand
+                ? 'checked' : '' %>
+              />
+              <span>
+                <%= brand %>
+              </span>
+            </label>
+
+            <% }) %>
         </div>
       </div>
-      <div class="filter-group">
-        <div class="filter-group-header">
-          <h4>Features</h4><svg class="filter-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
-        </div>
-        <div class="filter-group-body"><label class="filter-check"><input
-              type="checkbox" /><span>Metallic</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Plastic cover</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>8GB Ram</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Super power</span></label>
-          <label class="filter-check"><input type="checkbox" /><span>Large Memory</span></label>
-          <a href="#" class="filter-link filter-see-all">See all</a>
-        </div>
-      </div>
+
       <div class="filter-group">
         <div class="filter-group-header">
           <h4>Price range</h4><svg class="filter-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -215,23 +205,12 @@
             <div class="price-input-group"><label>Max</label><input type="text" class="price-box" value="50000"
                 id="priceMax" /></div>
           </div>
-          <button class="apply-btn">Apply</button>
+          <button class="apply-btn" onclick="applyPriceFilter()">
+            Apply
+          </button>
         </div>
       </div>
-      <div class="filter-group">
-        <div class="filter-group-header">
-          <h4>Condition</h4><svg class="filter-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
-        </div>
-        <div class="filter-group-body"><label class="filter-radio"><input type="radio" name="condition"
-              checked /><span>Any</span></label>
-          <label class="filter-radio"><input type="radio" name="condition" /><span>Refurbished</span></label>
-          <label class="filter-radio"><input type="radio" name="condition" /><span>Brand new</span></label>
-          <label class="filter-radio"><input type="radio" name="condition" /><span>Old items</span></label>
-        </div>
-      </div>
+
       <div class="filter-group">
         <div class="filter-group-header">
           <h4>Ratings</h4><svg class="filter-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -239,74 +218,24 @@
             <polyline points="18 15 12 9 6 15" />
           </svg>
         </div>
-        <div class="filter-group-body"><label class="filter-check rating-row"><input type="checkbox" /><span
-              class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg></span></label>
-          <label class="filter-check rating-row"><input type="checkbox" /><span class="stars"><svg width="14"
-                height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg></span></label>
-          <label class="filter-check rating-row"><input type="checkbox" /><span class="stars"><svg width="14"
-                height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg></span></label>
-          <label class="filter-check rating-row"><input type="checkbox" /><span class="stars"><svg width="14"
-                height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA41C">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#ddd">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg></span></label>
+        <div class="filter-group-body">
+
+          <a href="/products?rating=5" class="filter-link">
+            ⭐⭐⭐⭐⭐
+          </a>
+
+          <a href="/products?rating=4" class="filter-link">
+            ⭐⭐⭐⭐ & Up
+          </a>
+
+          <a href="/products?rating=3" class="filter-link">
+            ⭐⭐⭐ & Up
+          </a>
+
+          <a href="/products?rating=2" class="filter-link">
+            ⭐⭐ & Up
+          </a>
+
         </div>
       </div>
     </aside>
@@ -314,19 +243,21 @@
     <div class="results-panel">
       <div class="results-toolbar">
         <div class="results-info">
-          <span class="results-count"><strong>12,911 items</strong> in Mobile accessory</span>
-          <label class="verified-toggle">
-            <input type="checkbox" checked id="verifiedCheck" />
-            <span class="toggle-slider"></span>
-            <span>Verified only</span>
-          </label>
+          <span class="results-count">
+            <strong>
+              <%= totalProducts %> items
+            </strong>
+            <% if(category){ %>
+              in <%= category.charAt(0).toUpperCase() + category.slice(1) %>
+                <% } %>
+          </span>
         </div>
         <div class="results-controls">
-          <select class="sort-select">
-            <option>Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest</option>
+          <select class="sort-select" id="sortSelect">
+            <option value="">Featured</option>
+            <option value="price">Price: Low to High</option>
+            <option value="-price">Price: High to Low</option>
+            <option value="-createdAt">Newest</option>
           </select>
           <div class="view-toggle">
             <button class="view-btn active" id="btnGrid" title="Grid view" onclick="setView('grid')">
@@ -642,7 +573,61 @@
             btn.disabled = false;
           }
         }
+        function applyPriceFilter() {
 
+          const minPrice =
+            document.getElementById("priceMin").value;
+
+          const maxPrice =
+            document.getElementById("priceMax").value;
+
+          const params =
+            new URLSearchParams(window.location.search);
+
+          if (minPrice) {
+            params.set("minPrice", minPrice);
+          }
+
+          if (maxPrice) {
+            params.set("maxPrice", maxPrice);
+          }
+
+          window.location.href =
+            "/products?" + params.toString();
+        }
+        function filterBrand(el) {
+
+          const url = new URL(window.location.href);
+
+          if (el.checked) {
+            url.searchParams.set("brand", el.value);
+          } else {
+            url.searchParams.delete("brand");
+          }
+
+          url.searchParams.set("page", 1);
+
+          window.location.href = url.toString();
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          const sortSelect = document.getElementById("sortSelect");
+
+          // تحديد القيمة الحالية من الـ URL
+          const params = new URLSearchParams(window.location.search);
+          sortSelect.value = params.get("sort") || "";
+
+          sortSelect.addEventListener("change", function () {
+            const url = new URL(window.location.href);
+
+            if (this.value) {
+              url.searchParams.set("sort", this.value);
+            } else {
+              url.searchParams.delete("sort");
+            }
+
+            window.location.href = url.toString();
+          });
+        });
       </script>
 
 </body>

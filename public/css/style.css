@@ -1245,17 +1245,8 @@ a {
   font-weight: 600;
 }
 
-/* Breadcrumb */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #999;
-  padding: 14px 0 18px;
-}
-.breadcrumb a { color: #555; }
-.breadcrumb a:hover { color: #1a73e8; }
+
+
 .bc-current { color: #1a1a1a; font-weight: 500; }
 
 /* Page wrapper */
@@ -1742,29 +1733,6 @@ a {
 .page-num.active { background: #1a73e8; color: #fff; border-color: #1a73e8; font-weight: 600; }
 .page-btn { font-size: 18px; line-height: 1; }
 
-
-/* ═══════════════════════════════════════
-   LISTING PAGE — BREADCRUMB
-════════════════════════════════════════ */
-.breadcrumb-bar {
-  background: #fff;
-  border-bottom: 1px solid #eeeeee;
-}
-.breadcrumb-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px 40px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #888;
-  flex-wrap: wrap;
-}
-.breadcrumb-inner a { color: #888; transition: color 0.12s; }
-.breadcrumb-inner a:hover { color: #1a73e8; }
-.bc-sep { color: #ccc; }
-.bc-current { color: #1a1a1a; font-weight: 500; }
 
 
 /* ═══════════════════════════════════════
@@ -2257,28 +2225,6 @@ a {
    PRODUCT DETAIL PAGE
 ════════════════════════════════════════ */
 
-/* ── Breadcrumb (reused) ── */
-.breadcrumb-bar {
-  background: #fff;
-  border-bottom: 1px solid #eeeeee;
-  padding: 0 40px;
-}
-.breadcrumb-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 0;
-  font-size: 13px;
-  color: #aaa;
-}
-.breadcrumb-inner a {
-  color: #888;
-  transition: color 0.12s;
-}
-.breadcrumb-inner a:hover { color: #1a73e8; }
-.breadcrumb-inner span { color: #1a1a1a; }
 
 /* ── Detail wrapper ── */
 .detail-wrapper {
@@ -3362,14 +3308,7 @@ a {
   transition: background 0.12s;
 }
 .topbar-toggle:hover { background: #f0f2f5; }
-.topbar-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.5px;
-  color: #888;
-}
-.topbar-breadcrumb span { color: #1a1a1a; font-weight: 500; }
+
 .topbar-right {
   margin-left: auto;
   display: flex;
@@ -4805,10 +4744,7 @@ a {
   }
   
   /* Product Listing */
-  .breadcrumb-inner {
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+ 
   
   .results-toolbar {
     padding: 10px 14px;
@@ -4872,10 +4808,7 @@ a {
     justify-content: center;
   }
   
-  /* Product Detail */
-  .breadcrumb-inner {
-    padding: 8px 16px;
-  }
+ 
   
   .detail-wrapper {
     padding: 16px;
@@ -5074,9 +5007,7 @@ a {
     padding: 0 16px;
   }
   
-  .topbar-breadcrumb {
-    font-size: 12px;
-  }
+
   
   .topbar-search-wrap {
     width: 100%;

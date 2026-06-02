@@ -500,7 +500,15 @@
                       category.</span>
                   </div>
                 </div>
-
+                <!-- Brand Name -->
+                <div class="modal-field">
+                  <label for="fieldBrand">Brand Name <span>*</span></label>
+                  <input type="text" id="fieldBrand" name="brand" class="modal-input"
+                    placeholder="e.g. zara nike adidas " />
+                  <span class="auth-error-msg" id="errName" style="display:none;color:#e53935;font-size:12px;">Brand
+                    name is
+                    required.</span>
+                </div>
                 <!-- Stock -->
                 <div class="modal-field">
                   <label for="fieldStock">Stock Quantity <span>*</span></label>
@@ -550,6 +558,9 @@
                 </div>
                 <div class="view-detail-item"><label>Category</label>
                   <p id="viewCat">–</p>
+                </div>
+                <div class="view-detail-item"><label>Brand Name</label>
+                  <p id="viewBrand">–</p>
                 </div>
                 <div class="view-detail-item"><label>Price</label>
                   <p id="viewPrice">–</p>
@@ -723,7 +734,9 @@
             document.getElementById(
               "fieldCategory"
             ).value = product.category
-
+            document.getElementById(
+              "fieldBrand"
+            ).value = product.brand
             document.getElementById(
               "fieldStock"
             ).value = product.stock
@@ -765,6 +778,7 @@
             const desc = document.getElementById('fieldDesc').value.trim();
             const imageInput = document.getElementById('imgFile');
             const imageUrl = document.getElementById('fieldImage').value;
+            const brand = document.getElementById('fieldBrand').value.trim();
 
             clearErrors();
             let valid = true;
@@ -804,6 +818,8 @@
             document.getElementById('viewPrice').textContent = `$${Number(product.price).toFixed(2)}`;
             document.getElementById('viewStock').textContent = `${product.stock} units`;
             document.getElementById('viewDesc').textContent = product.description || '—';
+            document.getElementById('viewBrand').textContent = product.brand;
+
 
             openModal('viewModal');
           }
