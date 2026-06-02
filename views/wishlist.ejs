@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Wishlist – Brand Store</title>
+  <link rel="stylesheet" href="/css/wishlist.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-top">
+      <a href="/" class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+            <path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">Brand</span>
+      </a>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search" />
+        <div class="search-divider"></div>
+        <select class="search-category">
+          <option>All category</option>
+          <option>Electronics</option>
+          <option>Fashion</option>
+          <option>Sports</option>
+        </select>
+        <button class="search-btn">Search</button>
+      </div>
+      <nav class="header-icons">
+        <a href="/profile" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>Profile</span>
+        </a>
+        <a href="/messages" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          <span>Message</span>
+        </a>
+        <a href="/orders" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <span>Orders</span>
+        </a>
+        <a href="/cart" class="icon-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span>My cart</span>
+        </a>
+        <!-- Wishlist icon — active -->
+        <a href="/wishlist" class="icon-link" style="color:#e53935;">
+          <svg width="22" height="22" viewBox="0 0 24 24"
+               fill="#e53935" stroke="#e53935" stroke-width="1.5">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+          <span>Wishlist</span>
+        </a>
+      </nav>
+    </div>
+    <div class="header-nav">
+      <div class="nav-left">
+        <a href="#" class="nav-link nav-category">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          All category
+        </a>
+        <a href="#" class="nav-link">Hot offers</a>
+        <a href="#" class="nav-link">Gift boxes</a>
+        <a href="#" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Menu item</a>
+        <a href="#" class="nav-link nav-dropdown">
+          Help
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-link nav-dropdown">
+          English, USD
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </a>
+        <a href="#" class="nav-link nav-dropdown">
+          Ship to 🇩🇪
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       BREADCRUMB
+  ════════════════════════════════════════ -->
+  <div class="breadcrumb-bar">
+    <div class="breadcrumb-inner">
+      <a href="/">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+      <span>My Wishlist</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       WISHLIST CONTENT
+  ════════════════════════════════════════ -->
+  <div class="wishlist-wrapper">
+
+    <!-- Header row -->
+    <div class="wishlist-header">
+      <h1 class="wishlist-title">
+        <svg width="24" height="24" viewBox="0 0 24 24"
+             fill="#e53935" stroke="#e53935" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+        My Wishlist
+        <span class="wishlist-count-badge">
+          <%= wishlistItems.length %> item<%= wishlistItems.length !== 1 ? 's' : '' %>
+        </span>
+      </h1>
+
+      <% if (wishlistItems.length > 0) { %>
+        <form action="/wishlist/clear" method="POST" style="margin:0">
+          <button type="submit" class="wishlist-clear-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+              <path d="M10 11v6M14 11v6"/>
+            </svg>
+            Clear all
+          </button>
+        </form>
+      <% } %>
+    </div>
+
+    <!-- ── Empty State ── -->
+    <% if (wishlistItems.length === 0) { %>
+      <div class="wishlist-empty">
+        <div class="wishlist-empty-icon">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+        <h3>Your wishlist is empty</h3>
+        <p>Save products you love by clicking the heart icon on any product.</p>
+        <a href="/products" class="wishlist-empty-btn">Browse Products</a>
+      </div>
+
+    <% } else { %>
+
+      <!-- ── Product Grid ── -->
+      <div class="wishlist-grid">
+
+        <% wishlistItems.forEach(item => {
+          const product = item.product || item;
+          const stock   = product.stock || 0;
+          const stockClass = stock === 0 ? 'out' : stock <= 10 ? 'low' : 'in';
+          const stockLabel = stock === 0 ? 'Out of stock' : stock <= 10 ? `Low stock (${stock})` : 'In stock';
+          const catEmoji   = { electronics: '💻', fashion: '👕', sports: '⚽' };
+        %>
+
+          <div class="wishlist-card" id="wl-card-<%= product._id %>">
+
+            <!-- Remove button -->
+            <button
+              class="wl-remove-btn"
+              onclick="removeFromWishlist('<%= product._id %>')"
+              title="Remove from wishlist"
+              type="button"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+
+            <!-- Product Image -->
+            <a href="/products/<%= product._id %>" class="wl-img">
+              <% if (product.image) { %>
+                <img
+                  src="/uploads/<%= product.image %>"
+                  alt="<%= product.name %>"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+                />
+                <span class="wl-img-placeholder" style="display:none;">
+                  <%= catEmoji[product.category] || '📦' %>
+                </span>
+              <% } else { %>
+                <span class="wl-img-placeholder">
+                  <%= catEmoji[product.category] || '📦' %>
+                </span>
+              <% } %>
+            </a>
+
+            <!-- Card Body -->
+            <div class="wl-body">
+
+              <% if (product.category) { %>
+                <span class="wl-category"><%= product.category %></span>
+              <% } %>
+
+              <a href="/products/<%= product._id %>" class="wl-name"
+                 style="text-decoration:none;">
+                <%= product.name %>
+              </a>
+
+              <!-- Price -->
+              <div class="wl-price-row">
+                <span class="wl-price">$<%= Number(product.price).toFixed(2) %></span>
+                <% if (product.oldPrice) { %>
+                  <span class="wl-old-price">$<%= Number(product.oldPrice).toFixed(2) %></span>
+                <% } %>
+              </div>
+
+              <!-- Rating -->
+              <% if (product.rating) { %>
+                <div class="wl-rating">
+                  <span class="wl-stars">
+                    <% for(let s = 1; s <= 5; s++) { %>
+                      <svg width="13" height="13" viewBox="0 0 24 24"
+                           fill="<%= s <= Math.round(product.rating) ? '#FFA41C' : '#e0e0e0' %>">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      </svg>
+                    <% } %>
+                  </span>
+                  <span><%= Number(product.rating).toFixed(1) %></span>
+                </div>
+              <% } %>
+
+              <!-- Stock -->
+              <div class="wl-stock <%= stockClass %>">
+                <span class="wl-stock-dot"></span>
+                <%= stockLabel %>
+              </div>
+
+              <!-- Actions -->
+              <div class="wl-actions">
+                <% if (stock > 0) { %>
+                  <form action="/cart/add" method="POST"
+                        style="flex:1;margin:0;display:flex;">
+                    <input type="hidden" name="productId" value="<%= product._id %>" />
+                    <input type="hidden" name="quantity"  value="1" />
+                    <button type="submit" class="wl-add-cart">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                      </svg>
+                      Add to cart
+                    </button>
+                  </form>
+                <% } else { %>
+                  <button class="wl-add-cart"
+                          style="flex:1;opacity:0.5;cursor:not-allowed;"
+                          disabled>
+                    Out of stock
+                  </button>
+                <% } %>
+
+                <a href="/products/<%= product._id %>" class="wl-view-btn"
+                   title="View product">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div><!-- /wl-body -->
+          </div><!-- /wishlist-card -->
+
+        <% }) %>
+
+      </div><!-- /wishlist-grid -->
+
+    <% } %>
+
+  </div><!-- /wishlist-wrapper -->
+
+  <!-- ── Newsletter ── -->
+  <div class="newsletter-wrap">
+    <h2>Subscribe on our newsletter</h2>
+    <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+    <div class="newsletter-form">
+      <div class="newsletter-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="#aaa" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <input type="email" placeholder="Email" class="newsletter-input" />
+      </div>
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo footer-logo">
+          <div class="logo-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="2" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+              <path d="M6 8h8M6 11h5" stroke="#1a73e8" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="logo-text">Brand</span>
+        </a>
+        <p class="footer-desc">Best information about the company gies here but now lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="#">About Us</a><a href="#">Find store</a>
+        <a href="#">Categories</a><a href="#">Blogs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Partnership</h4>
+        <a href="#">About Us</a><a href="#">Find store</a>
+        <a href="#">Categories</a><a href="#">Blogs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="#">Help Center</a><a href="#">Money Refund</a>
+        <a href="#">Shipping</a><a href="#">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <h4>For users</h4>
+        <a href="#">Login</a><a href="#">Register</a>
+        <a href="#">Settings</a><a href="#">My Orders</a>
+      </div>
+      <div class="footer-col footer-app">
+        <h4>Get app</h4>
+        <a href="#" class="app-store-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <div><span class="app-sub">Download on the</span><span class="app-name">App Store</span></div>
+        </a>
+        <a href="#" class="app-store-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+            <path d="M3.18 23.76c.3.17.64.24.99.19l12.6-12.6L13.42 8l-10.24 14c-.17.3-.2.67-.05 1 .02.27.03.54.05.76zM20.45 10.64l-2.72-1.57-3.43 3.43 3.43 3.43 2.75-1.59c.78-.45.78-1.25-.03-1.7zM2 2.27c-.06.2-.06.42 0 .62v18.82c0 .2.06.42.18.6L13.42 11 2 2.27z"/>
+          </svg>
+          <div><span class="app-sub">Get it on</span><span class="app-name">Google Play</span></div>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="footer-bottom">
+    <span>© 2023 Ecommerce.</span>
+    <a href="#" class="footer-lang">
+      🇺🇸 English
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Toast -->
+  <div id="wl-toast" style="
+    position:fixed; bottom:28px; right:28px;
+    background:#1e2a3a; color:#fff;
+    border-radius:10px; padding:13px 18px;
+    display:flex; align-items:center; gap:10px;
+    font-size:13.5px; font-weight:500;
+    box-shadow:0 8px 30px rgba(0,0,0,0.18);
+    z-index:1000; min-width:240px;
+    transform:translateY(80px); opacity:0;
+    transition:transform 0.3s, opacity 0.3s;
+  ">
+    <div id="wl-toast-icon" style="
+      width:28px; height:28px; border-radius:6px;
+      background:#e53935; display:flex;
+      align-items:center; justify-content:center; flex-shrink:0;
+    ">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="white" stroke-width="2.5">
+        <polyline points="3 6 5 6 21 6"/>
+        <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+      </svg>
+    </div>
+    <span id="wl-toast-msg">Removed from wishlist</span>
+  </div>
+
+  <script>
+
+    /* ── Remove single item from wishlist ── */
+    async function removeFromWishlist(productId) {
+      try {
+        const res = await fetch(`/wishlist/${productId}`, {
+          method: 'POST',   // same route as add — toggles
+          headers: { 'Content-Type': 'application/json' },
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // إزالة الكارت من الـ UI بـ animation
+          const card = document.getElementById(`wl-card-${productId}`);
+          if (card) {
+            card.style.transition = 'opacity 0.3s, transform 0.3s';
+            card.style.opacity    = '0';
+            card.style.transform  = 'scale(0.92)';
+            setTimeout(() => {
+              card.remove();
+              updateCount();
+            }, 300);
+          }
+
+          showToast(data.message || 'Removed from wishlist');
+        }
+
+      } catch (err) {
+        console.error('Wishlist error:', err);
+        showToast('Something went wrong.', 'error');
+      }
+    }
+
+    /* ── Update the count badge ── */
+    function updateCount() {
+      const cards = document.querySelectorAll('.wishlist-card');
+      const badge = document.querySelector('.wishlist-count-badge');
+      if (badge) {
+        const n = cards.length;
+        badge.textContent = `${n} item${n !== 1 ? 's' : ''}`;
+      }
+
+      // لو مفيش منتجات → اعرض empty state
+      if (cards.length === 0) {
+        const grid   = document.querySelector('.wishlist-grid');
+        const header = document.querySelector('.wishlist-header');
+        if (grid) grid.remove();
+        if (header) {
+          header.innerHTML = `
+            <h1 class="wishlist-title">
+              <svg width="24" height="24" viewBox="0 0 24 24"
+                   fill="#e53935" stroke="#e53935" stroke-width="1.5">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+              </svg>
+              My Wishlist
+              <span class="wishlist-count-badge">0 items</span>
+            </h1>`;
+          const wrapper = document.querySelector('.wishlist-wrapper');
+          if (wrapper) {
+            wrapper.insertAdjacentHTML('beforeend', `
+              <div class="wishlist-empty">
+                <div class="wishlist-empty-icon">
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                  </svg>
+                </div>
+                <h3>Your wishlist is empty</h3>
+                <p>Save products you love by clicking the heart icon on any product.</p>
+                <a href="/products" class="wishlist-empty-btn">Browse Products</a>
+              </div>`);
+          }
+        }
+      }
+    }
+
+    /* ── Toast ── */
+    function showToast(msg) {
+      const toast = document.getElementById('wl-toast');
+      document.getElementById('wl-toast-msg').textContent = msg;
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity   = '1';
+      setTimeout(() => {
+        toast.style.transform = 'translateY(80px)';
+        toast.style.opacity   = '0';
+      }, 3000);
+    }
+
+  </script>
+
+</body>
+</html>

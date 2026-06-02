@@ -14,7 +14,13 @@ const orderSchema = new mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Product"
             },
+
+            name: String,
+
+            image: String,
+
             quantity: Number,
+
             price: Number
         }
     ],

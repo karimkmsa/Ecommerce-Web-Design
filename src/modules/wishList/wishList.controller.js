@@ -63,17 +63,14 @@ export const toggleWishlist = async (req, res) => {
 
 
 export const getWishlist = async (req, res) => {
+  const user = await userModel.findById(req.user._id)
+    .populate('wishlist');        // populate المنتجات كاملة
 
-    const user = await userModel
-
-        .findById(req.user._id)
-
-        .populate("wishlist");
-
-    res.render("wishlist", {
-
-        wishlist: user.wishlist
-
-    });
-
+  res.render('wishlist', {
+    wishlistItems: user.wishlist  // array of products
+  });
+};
+export const clearWishlist = async (req, res) => {
+  await User.findByIdAndUpdate(req.user._id, { wishlist: [] });
+  res.redirect('/wishlist');
 };

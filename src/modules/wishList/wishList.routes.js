@@ -1,7 +1,7 @@
 import express from "express";
 
 import {
-toggleWishlist,getWishlist
+toggleWishlist,getWishlist,clearWishlist
 } from "./wishlist.controller.js";
 
 import {
@@ -23,5 +23,8 @@ router.post(
     isAuthenticated,
     toggleWishlist
 );
+router.get('/',            isAuthenticated, getWishlist);
+router.post('/:id',        isAuthenticated, toggleWishlist);
+router.post('/clear',      isAuthenticated, clearWishlist);
 
 export default router;
