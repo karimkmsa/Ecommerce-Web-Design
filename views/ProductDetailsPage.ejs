@@ -793,31 +793,31 @@
 
     }
 
-async function buyNow(productId) {
+    async function buyNow(productId) {
 
-  try {
+      try {
 
-    const res = await fetch("/cart/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ productId })
-    });
+        const res = await fetch("/cart/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ productId })
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (res.ok) {
-      window.location.href = "/cart";
-    } else {
-      alert(data.message);
+        if (res.ok) {
+          window.location.href = "/cart";
+        } else {
+          alert(data.message);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+
     }
-
-  } catch (error) {
-    console.log(error);
-  }
-
-}
     // ── Toast helpers ──
     let toastTimer = null;
 
@@ -850,12 +850,12 @@ async function buyNow(productId) {
 
         } else {
           // مثلاً لو مش مسجل دخول
-           showToast(data.message || 'Something went wrong.', 'error');
+          showToast(data.message || 'Something went wrong.', 'error');
         }
 
       } catch (error) {
         console.error(error);
-         showToast('Network error. Please try again.', 'error');
+        showToast('Network error. Please try again.', 'error');
       }
     }
     function showToast(msg, type = 'success') {
@@ -963,6 +963,108 @@ async function buyNow(productId) {
   }`;
       document.head.appendChild(s);
     }
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const form = document.getElementById("reviewForm");
+      const stars = document.querySelectorAll(".star");
+      const ratingInput = document.getElementById("rating");
+      const commentInput = document.getElementById("comment");
+
+      // اختيار النجوم
+      stars.forEach(star => {
+        star.addEventListener("click", () => {
+
+          const value = Number(star.dataset.value);
+
+          ratingInput.value = value;
+
+          stars.forEach(s => {
+            s.classList.toggle(
+              "active",
+              Number(s.dataset.value) <= value
+            );
+          });
+
+        });
+      });
+
+      // إرسال الريفيو
+      form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const rating = Number(ratingInput.value);
+        const comment = commentInput.value.trim();
+
+        if (!rating) {
+          return showToast("Please select a rating", "error");
+        }
+
+        if (!comment) {
+          return showToast("Please write a comment", "error");
+        }
+
+        try {
+
+          showToast("Submitting review...", "loading");
+
+          const res = await fetch(
+            `/products/<%= product._id %>/review`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                rating,
+                comment
+              })
+            }
+          );
+
+          const data = await res.json();
+
+          if (res.ok) {
+
+            showToast(
+              data.message || "Review added successfully",
+              "success"
+            );
+
+            setTimeout(() => {
+              location.reload();
+            }, 1200);
+
+          } else {
+
+            showToast(
+              data.message || "Failed to add review",
+              "error"
+            );
+
+          }
+
+        } catch (err) {
+
+          console.error(err);
+
+          showToast(
+            "Network error, please try again",
+            "error"
+          );
+
+        }
+
+      });
+
+    });
+
+
+
+
   </script>
 
 </body>
