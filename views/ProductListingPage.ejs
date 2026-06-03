@@ -301,12 +301,18 @@
 
               <img src="/uploads/<%= product.image %>" alt="<%= product.name %>">
 
-              <button class="wishlist-btn" onclick="addWishlist('<%= product._id %>')">
-                <svg width=" 16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                </svg>
-              </button>
+              <% const isInWishlist=(wishlist || []).includes(product._id.toString()); %>
+
+                <button type="button" class="wishlist-btn <%= isInWishlist ? 'saved' : '' %>"
+                  onclick="addWishlist(event, '<%= product._id %>')" data-id="<%= product._id %>">
+                  <svg width="12" height="14" viewBox="0 0 24 24" fill="<%= isInWishlist ? '#e53935' : 'none' %>"
+                    stroke="<%= isInWishlist ? '#e53935' : 'currentColor' %>" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                  </svg>
+
+               
+                </button>
             </div>
 
             <div class="product-item-info">
@@ -530,53 +536,57 @@
           });
         });
 
-        async function addWishlist(productId) {
-          console.log(productId);
-
-          // find the button that triggered the click
+        async function addWishlist(event, productId) {
           const btn = event.currentTarget;
 
-          // disable while request is in-flight to avoid double clicks
           btn.disabled = true;
 
           try {
             const res = await fetch(`/wishlist/${productId}`, {
-              method: "POST"
+              method: 'POST',
             });
 
             const data = await res.json();
-
             if (res.ok) {
-              // toggle UI state based on server response
-              // server should return { message: "...", added: true/false }
-              if (data.added) {
-                // ── added to wishlist ──
-                btn.classList.add("active");
+              const svg = btn.querySelector('svg');
+              const label = btn.querySelector('.save-label');
+
+              if (data.inWishlist) {
+                // ── أضيف للـ wishlist ──
+                btn.classList.add('saved');
+                svg.setAttribute('fill', '#e53935');
+                svg.setAttribute('stroke', '#e53935');
+                if (label) label.textContent = 'Saved ✓';
+
+                showToast(data.message || 'Saved to wishlist!', 'success');
+
               } else {
-                // ── removed from wishlist ──
-                btn.classList.remove("active");
+                // ── اتشال من الـ wishlist ──
+                btn.classList.remove('saved');
+                svg.setAttribute('fill', 'none');
+                svg.setAttribute('stroke', 'currentColor');
+                if (label) label.textContent = 'Save for later';
+
+                showToast(data.message || 'Removed from wishlist', 'info');
               }
 
+
               // pop animation
-              btn.classList.add("pop");
-              btn.addEventListener(
-                "animationend",
-                () => btn.classList.remove("pop"),
+              btn.classList.add('pop');
+              btn.addEventListener('animationend',
+                () => btn.classList.remove('pop'),
                 { once: true }
               );
 
             } else {
-              // server returned an error (401, 400, etc.)
-              alert(data.message);
+              showToast(data.message || 'Something went wrong.', 'error');
             }
 
           } catch (err) {
-            // network error
-            console.error("Wishlist error:", err);
-            alert("Something went wrong. Please try again.");
+            console.error(err);
+            showToast('Network error.', 'error');
 
           } finally {
-            // re-enable button regardless of outcome
             btn.disabled = false;
           }
         }
@@ -635,6 +645,111 @@
             window.location.href = url.toString();
           });
         });
+        function showToast(msg, type = 'success') {
+
+          // ── لو الـ toast مش موجود في الصفحة — انشئه ──
+          if (!document.getElementById('cart-toast')) {
+            document.body.insertAdjacentHTML('beforeend', `
+      <div id="cart-toast" style="
+        position:fixed; bottom:28px; right:28px;
+        background:#1e2a3a; color:#fff;
+        border-radius:10px; padding:13px 18px;
+        display:flex; align-items:center; gap:12px;
+        font-size:13.5px; font-weight:500;
+        box-shadow:0 8px 30px rgba(0,0,0,0.18);
+        z-index:9999; min-width:260px; max-width:340px;
+        transform:translateY(100px); opacity:0;
+        transition:transform 0.3s ease, opacity 0.3s ease;
+        pointer-events:none;
+      ">
+        <div id="cart-toast-icon" style="
+          width:32px; height:32px; border-radius:8px;
+          background:#43a047; display:flex;
+          align-items:center; justify-content:center; flex-shrink:0;
+        "></div>
+        <div style="flex:1;">
+          <span id="cart-toast-msg"></span>
+        </div>
+        <button onclick="hideToast()" style="
+          background:none; border:none;
+          color:rgba(255,255,255,0.5);
+          cursor:pointer; padding:0;
+          display:flex; align-items:center;
+        ">
+          <svg width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6"  y2="18"/>
+            <line x1="6"  y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    `);
+          }
+
+          const toast = document.getElementById('cart-toast');
+          const icon = document.getElementById('cart-toast-icon');
+          const msgEl = document.getElementById('cart-toast-msg');
+
+          const types = {
+            success: {
+              bg: '#43a047',
+              svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>`
+            },
+            error: {
+              bg: '#e53935',
+              svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6"  y2="18"/>
+              <line x1="6"  y1="6" x2="18" y2="18"/>
+            </svg>`
+            },
+            loading: {
+              bg: '#1a73e8',
+              svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5"
+                 style="animation:spin 1s linear infinite">
+              <circle cx="12" cy="12" r="10"
+                stroke-dasharray="40" stroke-dashoffset="10"/>
+            </svg>`
+            }
+          };
+
+          const t = types[type] || types.success;
+          msgEl.textContent = msg;
+          icon.style.background = t.bg;
+          icon.innerHTML = t.svg;
+
+          toast.style.transform = 'translateY(0)';
+          toast.style.opacity = '1';
+          toast.style.pointerEvents = 'all';
+
+          clearTimeout(window._toastTimer);
+          if (type !== 'loading') {
+            window._toastTimer = setTimeout(hideToast, 3500);
+          }
+        }
+
+        function hideToast() {
+          const toast = document.getElementById('cart-toast');
+          if (!toast) return;
+          toast.style.transform = 'translateY(100px)';
+          toast.style.opacity = '0';
+          toast.style.pointerEvents = 'none';
+        }
+
+        // ── spin animation ──
+        if (!document.getElementById('toast-style')) {
+          const s = document.createElement('style');
+          s.id = 'toast-style';
+          s.textContent = `@keyframes spin {
+    from { transform: rotate(0deg) }
+    to   { transform: rotate(360deg) }
+  }`;
+          document.head.appendChild(s);
+        }
       </script>
 
 </body>

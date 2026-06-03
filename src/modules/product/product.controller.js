@@ -20,6 +20,13 @@ export const getProduct = async (req, res) => {
       .pagination()
       .sort()    
 ;
+// في أي controller بيعرض منتجات
+
+
+  // جيب الـ wishlist بتاعت الـ user
+  const user = await userModel.findById(req.user?._id);
+  const wishlist = user?.wishlist.map(id => id.toString()) || [];
+
 
     const allproducts = await apiFeature.mongooseQuery;
 
@@ -44,6 +51,7 @@ export const getProduct = async (req, res) => {
       currentPage: page,
       totalPages,
       totalProducts,
+      wishlist,
       keyword: req.query.keyword || "",
       category: req.query.category || "",
       selectedBrand: req.query.brand || "",
@@ -55,28 +63,28 @@ export const getProduct = async (req, res) => {
   }
 };
 export const getProductId = async (req, res) => {
+  try {
 
     const product = await productModel.findById(req.params.id);
 
+    if (!product) {
+      return res.status(404).send("Product not found");
+    }
+
     const relatedProducts = await productModel.find({
-
-        category: product.category,
-
-        _id: { $ne: product._id }
-
-    }).limit(4);
-
-    res.render("ProductDetailsPage", {
-
-        product,
-
-        relatedProducts,
-
-        keyword: "",
-        category: ""
-
+      category: product.category,
+      _id: { $ne: product._id }
     });
 
+    res.render("ProductDetailsPage", {
+      product,
+      relatedProducts
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
 };
 export const addProduct = async (req, res) => {
   try {

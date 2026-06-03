@@ -287,13 +287,15 @@
                   </div>
 
                   <div class="order-item-actions">
-
-                    <a href="/products/<%= item._id %>" class="btn-buy-again">
-
-                      Buy Again
-
-                    </a>
-
+                    <% if(item.product){ %>
+                      <a href="/products/<%= item.product._id %>" class="btn-buy-again">
+                        Buy Again
+                      </a>
+                      <% } else { %>
+                        <span class="btn-buy-again disabled">
+                          Product Deleted
+                        </span>
+                        <% } %>
                   </div>
 
                 </div>

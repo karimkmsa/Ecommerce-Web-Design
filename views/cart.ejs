@@ -464,7 +464,37 @@
             </div>
         </div>
     </footer>
-
+<div id="cart-toast" style="
+  position: fixed; bottom: 28px; right: 28px;
+  background: #1e2a3a; color: #fff;
+  border-radius: 10px; padding: 13px 18px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13.5px; font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  z-index: 9999; min-width: 260px; max-width: 340px;
+  transform: translateY(100px); opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+">
+  <div id="cart-toast-icon" style="
+    width:32px; height:32px; border-radius:8px;
+    background:#43a047; display:flex;
+    align-items:center; justify-content:center; flex-shrink:0;
+  "></div>
+  <div style="flex:1;">
+    <span id="cart-toast-msg">Order placed!</span>
+  </div>
+  <button onclick="hideToast()" style="
+    background:none; border:none; color:rgba(255,255,255,0.5);
+    cursor:pointer; padding:0; display:flex; align-items:center;
+  ">
+    <svg width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6"  y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
     <script>
 
         async function updateQty(productId, action) {
@@ -522,32 +552,109 @@
                 console.log(err);
             }
         }
-        async function checkout() {
+      // ── Toast helpers (لو مش موجودين خليهم هنا) ──
+// ── Spin animation ──
+  const _style = document.createElement('style');
+  _style.textContent = `
+    @keyframes spin {
+      from { transform: rotate(0deg) }
+      to   { transform: rotate(360deg) }
+    }
+  `;
+  document.head.appendChild(_style);
 
-            try {
+  // ── Toast helpers ──
+  let _toastTimer = null;
 
+  const _toastTypes = {
+    success: {
+      bg:  '#43a047',
+      svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>`
+    },
+    error: {
+      bg:  '#e53935',
+      svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6"  y2="18"/>
+              <line x1="6"  y1="6" x2="18" y2="18"/>
+            </svg>`
+    },
+    loading: {
+      bg:  '#1a73e8',
+      svg: `<svg width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="white" stroke-width="2.5"
+                 style="animation:spin 1s linear infinite">
+              <circle cx="12" cy="12" r="10"
+                stroke-dasharray="40" stroke-dashoffset="10"/>
+            </svg>`
+    }
+  };
 
-                const res = await fetch("/checkout/checkout", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
+  function showToast(msg, type = 'success') {
+    const toast = document.getElementById('cart-toast');
+    const icon  = document.getElementById('cart-toast-icon');
+    const msgEl = document.getElementById('cart-toast-msg');
 
-                const data = await res.json();
+    const t = _toastTypes[type] || _toastTypes.success;
+    msgEl.textContent     = msg;
+    icon.style.background = t.bg;
+    icon.innerHTML        = t.svg;
 
-                if (res.ok) {
-                    alert("Order placed successfully");
-                    window.location.href = "/";
-                } else {
-                    alert(data.message);
-                }
+    toast.style.transform    = 'translateY(0)';
+    toast.style.opacity      = '1';
+    toast.style.pointerEvents = 'all';
 
+    clearTimeout(_toastTimer);
+    if (type !== 'loading') {
+      _toastTimer = setTimeout(hideToast, 3500);
+    }
+  }
 
-            } catch (err) {
-                console.log(err);
-            }
-        }
+  function hideToast() {
+    const toast = document.getElementById('cart-toast');
+    toast.style.transform    = 'translateY(100px)';
+    toast.style.opacity      = '0';
+    toast.style.pointerEvents = 'none';
+  }
+
+  // ── Checkout function ──
+  async function checkout() {
+    try {
+      // loading
+      showToast('Placing your order…', 'loading');
+
+      const res  = await fetch('/checkout/checkout', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        showToast(data.message || 'Order placed successfully! 🎉', 'success');
+
+        // صفّر الـ cart badge
+        const badge = document.getElementById('cart-count');
+        if (badge) badge.textContent = '0';
+
+        // redirect بعد ما يشوف الـ toast
+        setTimeout(() => {
+          window.location.href = '/cart/';
+        }, 2000);
+
+      } else {
+        showToast(data.message || 'Something went wrong.', 'error');
+      }
+
+    } catch (err) {
+      console.error(err);
+      showToast('Network error. Please try again.', 'error');
+    }
+  }
+
     </script>
 </body>
 
