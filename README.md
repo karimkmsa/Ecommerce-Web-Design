@@ -105,7 +105,41 @@ http://localhost:3000
 * Admin Analytics Dashboard
 * Product Recommendations
 * Email Notifications
-* 
+  ## Admin Account
+
+A default admin account is automatically created when the application starts for the first time.
+
+### Admin Credentials
+
+```text
+Email: admin@example.com
+Password: admin123
+```
+
+### Admin Features
+
+* Add New Products
+* Edit Products
+* Delete Products
+* Manage Inventory
+* Access Dashboard
+* View Orders
+* Monitor Store Activity
+
+### Security Note
+
+For production deployment, change the default admin credentials immediately and store them securely using environment variables.
+## Admin Account
+
+Create the following environment variables:
+
+```env
+ADMIN_EMAIL=your_admin_email
+ADMIN_PASSWORD=your_admin_password
+```
+
+The application will automatically create the admin account if it does not already exist.
+
 ## Author
 
 Karim Khaled
