@@ -9,7 +9,7 @@ import userRouter from './src/modules/user/user.routes.js';
 import cartRouter from './src/modules/cart/cart.routes.js'
 import orderRouter from './src/modules/order/order.routes.js'
 import checkOutRouter from './src/modules/checkout/checkout.routes.js'
-import wishlistRouter from "./src/modules/wishlist/wishlist.routes.js";
+//import wishlistRouter from "./src/modules/wishlist/wishlist.routes.js";
 import cookieParser from "cookie-parser";
 import { isAuthenticated } from "./src/utils/middleware/auth.middleware.js";
 import dotenv from 'dotenv'
@@ -66,7 +66,7 @@ app.use("/user",userRouter)
 app.use("/cart",cartRouter)
 app.use("/order", orderRouter);
 app.use("/checkout", checkOutRouter);
-app.use("/wishlist", wishlistRouter);
+//app.use("/wishlist", wishlistRouter);
 
 app.get("/profile",(req,res)=>{
 
