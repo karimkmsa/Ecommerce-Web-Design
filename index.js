@@ -1,3 +1,5 @@
+import dns from "node:dns/promises"
+dns.setServers(["8.8.8.8","1.1.1.1"])
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,15 +11,14 @@ import orderRouter from './src/modules/order/order.routes.js'
 import checkOutRouter from './src/modules/checkout/checkout.routes.js'
 import wishlistRouter from "./src/modules/wishlist/wishlist.routes.js";
 import cookieParser from "cookie-parser";
-import { isAuthenticated } from "../Ecommerce Web Design/src/utils/middleware/auth.middleware.js";
+import { isAuthenticated } from "./src/utils/middleware/auth.middleware.js";
 import dotenv from 'dotenv'
 import { seedAdmin } from './src/modules/seedAdmin.js';
 dotenv.config()
 
 
 const app = express();
-const port = 3000;
-
+const port = process.env.PORT || 3000;
 connection();
 seedAdmin();
 app.use(express.json());
@@ -66,29 +67,16 @@ app.use("/cart",cartRouter)
 app.use("/order", orderRouter);
 app.use("/checkout", checkOutRouter);
 app.use("/wishlist", wishlistRouter);
-// Product Details Page
-app.get("/products/:id", (req, res) => {
 
-    const productId = req.params.id;
-
-    res.render("ProductDetailsPage", {
-        id: productId
-    });
-
-});
 app.get("/profile",(req,res)=>{
 
     res.render("profile")
 
 
 })
-app.get("/cart",(req,res)=>{
-
-    res.render("cart")
 
 
-})
-
+export default app;
 
 app.listen(port, () => {
 
